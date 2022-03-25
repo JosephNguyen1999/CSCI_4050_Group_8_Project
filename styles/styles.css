@@ -56,7 +56,7 @@ body {
     position: relative;
     color:black;
     display: inline-block;
-    bottom: 50%;
+    /* bottom: 50%; */
 }
 
 #body {
