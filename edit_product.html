@@ -25,6 +25,25 @@
         p {
             text-align: left;
         }
+
+        form {
+            display: table;
+			margin-left: auto;
+  			margin-right: auto;
+        }
+
+        form.p {
+            display: table-row;
+        }
+
+        label {
+            display: table-cell;
+        }
+
+        input {
+            display: table-cell;
+        }
+
     </style>
 
     <link rel="stylesheet" href="styles/styles.css">
@@ -64,6 +83,20 @@
             <p>Price: $116.25</p>
         </div>
     </div>
+
+    <form>
+        <div>
+            <label for="type">Edit Product: </label>
+            <select class="category" name="category">
+                <option value="ctitle">Change Title</option>
+                <option value="cauthor">Change Author</option>
+                <option value="csubject">Change Subject</option>
+                <option value="cisbn">Change ISBN</option>
+                <option value="cprice">Change Price</option>
+            </select><br>
+            <input class="verify" type="text" name="edit"><br><br>
+        </div>
+    </form>
 
     <footer id='footer'>
         <p>&copy; Book Store</p>

@@ -44,17 +44,16 @@
         
         
         
-        <h2>Browse Catalog</h2>
+        <h2>Members Catalog</h2>
         
         <div class="text-center">
             <form id="searchbar" action="action_page.php">
                 <input type="text" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
                 <select class="category" name="category">
-					<option value="title">Title</option>
-					<option value="subject">Subject</option>
-                    <option value="isbn">ISBN</option>
-                    <option value="author">Author</option>
+					<option value="name">Name</option>
+					<option value="id">ID</option>
+                    <option value="email">Email</option>
 				</select><br>
             </form>
         </div>
@@ -66,20 +65,20 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Price</th>
-                <th>Cart</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Edit</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td><img src="images/0136061257.jpg" height="150px"></td>
-                <td><a href="book_detail_page.html">Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition</a></td>
-                <td>Bernd Bruegge, Allen H. Dutoit</td>
-                <td>$116.25</td>
-                <td><a href="catalog_page.html">Add to cart</a></td>
+                <td>1</td>
+                <td>Joseph</td>
+                <td>Nguyen</td>
+                <td>hello@uga.edu</td>
+                <td><button type="button" class='edit' name="edit">Edit</button></td>
             </tr>
             </tbody>
         </table>
