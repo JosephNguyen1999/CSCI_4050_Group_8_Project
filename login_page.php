@@ -1,5 +1,8 @@
-<html lang="en">
+<?php include_once('session_header.php'); ?>
 
+<!DOCTYPE html>
+
+<html>
 
 
 <head>
@@ -41,25 +44,26 @@
 		<img src="./images/headpugnobg.jpg" alt="pugbook" width="250" height="140">
 		<h1>Book Store</h1>
 	</div>
-
-	<ul id="navbar_div">
-		<li><a href="home_page.html">Home</a></li>
-		<li><a href="catalog_page.html">Browse</a></li>
-		<li><a href="about_page.html">About</a></li>
-		<li><a href="contact_page.html">Contact Us</a></li>
-		<li><a href="cart_page.html">Cart</a></li>
-		<li><a href="checkout_page.html">Checkout</a></li>
-		<li><a href="order_history_page.html">Order History</a></li>
-		<li><a class="active" href="login_page.html">Login</a></li>
-		<li><a href="registration_page.html">Register</a></li>
-		<li><a href="logout_page.html">Logout</a></li>
-		<li><a href="verification_page.html">Verify</a></li>
-		<li><a href="manage_account_page.html">Manage Account</a></li>
-	</ul>
-
+	<?php if ($_SESSION['loginst'] == 0) { ?>
+		<ul id="navbar_div">
+			<li><a href="home_page.html">Home</a></li>
+			<li><a href="catalog_page.html">Browse</a></li>
+			<li><a href="about_page.html">About</a></li>
+			<li><a href="contact_page.html">Contact Us</a></li>
+			<li><a href="cart_page.html">Cart</a></li>
+			<li><a href="checkout_page.html">Checkout</a></li>
+			<li><a href="order_history_page.html">Order History</a></li>
+			<li><a class="active" href="login_page.html">Login</a></li>
+			<li><a href="registration_page.html">Register</a></li>
+			<li><a href="logout_page.html">Logout</a></li>
+			<li><a href="verification_page.html">Verify</a></li>
+			<li><a href="manage_account_page.html">Manage Account</a></li>
+		</ul>
+	<?php } else { ?>
+	<?php }; ?>
 	<div id="loginPage">
 
-		<form action="checkUserAction.php" method="post">
+		<form action="validate_login.php" method="post">
 
 
 			<h2 id="newAccountHeader">Log In</h2>
