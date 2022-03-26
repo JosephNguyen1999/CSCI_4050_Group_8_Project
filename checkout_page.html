@@ -14,9 +14,11 @@
     <style>
         form {
             display: table;
+            margin-left: auto;
+  			margin-right: auto;
         }
 
-        p {
+        form.p {
             display: table-row;
         }
 
@@ -47,11 +49,15 @@
         <li><a href="contact_page.html">Contact Us</a></li>
         <li><a href="cart_page.html">Cart</a></li>
         <li><a class="active" href="checkout_page.html">Checkout</a></li>
+        <li><a href="order_history_page.html">Order History</a></li>
+        <li><a href="login_page.html">Login</a></li>
+        <li><a href="registration_page.html">Register</a></li>
     </ul>
 
-    <h2>Checkout</h2>
 
     <form method="post">
+        <h2>Checkout</h2>
+        
         <div class="stacked">
             <label for="CreditCard">Credit Card Number: </label>
             <input type="text" name="CreditCard" id="creditcard">
@@ -81,7 +87,7 @@
             </div>
             <div class="stacked">
                 <label for="zipcode">Zipcode: </label>
-                <input type="text" name="zipcode" id="zipcode" maxlength="5" minlength="5">
+                <input type="text" name="zipcode" id="zipcode" maxlength="5" minlength="5"><br><br>
             </div>
         </div>
         <button type="submit" name="btn" id="btn">Order</button>
