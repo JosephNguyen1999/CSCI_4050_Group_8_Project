@@ -75,24 +75,13 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productID`, `name`, `quantity`, `price`, `type`, `image`) VALUES
-(1, 'Blueberry Muffin', 5, 2.75, 'food', 'images/BlueberryMuffin.jpg'),
-(2, 'Chocolate Chip Muffin', 10, 1.21, 'food', 'images/ChocolateChipMuffin.jpg'),
-(3, 'New York Bagel', 11, 2.3, 'food', 'images/NYBagel.jpg'),
-(4, 'Cinnamon Raisin Bagel', 10, 2.89, 'food', 'images/CINBagel.jpg'),
-(5, 'Raspberry Pastry', 10, 3.79, 'food', 'images/Raspberry.jpg'),
-(6, 'Apple Turnover Pastry', 10, 2.79, 'food', 'images/Apple.jpg'),
-(7, 'Cheese Danish', 10, 2.67, 'food', 'images/CheeseDanish.jpeg'),
-(8, 'Frosted Danish', 3, 2, 'food', 'images/FilledFrostedDanish.jpg'),
-(9, 'Small Fruit Cup', 7, 1.5, 'food', 'images/smallfruitcup.jpg'),
-(10, 'Large Fruit Cup', 9, 2, 'food', 'images/largefruit.jpg'),
-(11, 'Dalgona Coffee', 3, 3.69, 'drink', 'images/Dalgona.jpg'),
-(12, 'Fizzy Strawberry Lemonade', 5, 4.5, 'drink', 'images/StrawberryLemonade.jpg'),
-(13, 'Pumpkin Spice Latte', 5, 4.5, 'drink', 'images/PumpkinSpice.jpg'),
-(14, 'Dark Roast Coffee', 5, 2.5, 'drink', 'images/DarkRoast.jpg'),
-(15, 'Light Roast Coffee', 5, 4.5, 'drink', 'images/LightRoast.jpg'),
-(16, 'Caramel Macchiato', 5, 3.8, 'drink', 'images/CaramelMacchiato.jpg'),
-(17, 'Cafe Latte', 9, 2.25, 'drink', 'images/Latte.jpg');
+INSERT INTO `products` (`prodID`, `name`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`) VALUES
+(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(2, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(3, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(4, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(5, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(6, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg');
 
 -- --------------------------------------------------------
 
@@ -117,10 +106,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `firstName`, `lastName`, `username`, `password`, `phoneNumber`) VALUES
-(1, 'Sarah', 'Greene', 'sgreene', '123', ''),
-(2, 'Bob', 'Jones', 'bobjones123', '246', ''),
-(3, 'Lily', 'Tea', 'tea111', '111', '');
+INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, `password`, `email`, `phoneNumber`, `verificationCode`, `verificationStatus`) VALUES
+(1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true'),
+(2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true'),
+(3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true'),
+(3, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true');
 
 
 -- --------------------------------------------------------
