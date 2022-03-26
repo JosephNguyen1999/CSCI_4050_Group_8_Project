@@ -12,6 +12,24 @@
     <link rel="stylesheet" href="styles/styles.css">
 
     <style>
+        form {
+            display: table;
+            margin-left: auto;
+  			margin-right: auto;
+        }
+
+        form.p {
+            display: table-row;
+        }
+
+        label {
+            display: table-cell;
+        }
+
+        input {
+            display: table-cell;
+        }
+
         #searchbar {
             margin: 50px 50px 50px;
         }
@@ -61,6 +79,17 @@
         </tbody>
     </table>
 
+    <div id="menu_div">
+        <h3>Enter Promotion Code Below:</h3>
+    </div>
+    <form action="checkout_page.html" method="post">
+        <div>
+            <input class="verify" type="text" name="promoCode"><br><br>
+        </div>
+        <div>
+            <button type="submit" class='proceedCheckout' name="proceedCheckout">Proceed to Checkout!</button>
+        </div>
+    </form>
 
     <footer id='footer'>
         <p>&copy; Book Store</p>

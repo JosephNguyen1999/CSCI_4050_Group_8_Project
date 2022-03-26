@@ -59,7 +59,13 @@
 
     <form method="post">
         <h2>Checkout</h2>
-
+        <div>
+            <label for="type">Type of Checkout: </label>
+            <select class="category" name="category">
+                <option value="atStore">Reservation in Store/Cash</option>
+                <option value="online">Credit/Debit Card</option>
+            </select><br>
+        </div>
         <div class="stacked">
             <label for="CreditCard">Credit Card Number: </label>
             <input type="text" name="CreditCard" id="creditcard">
