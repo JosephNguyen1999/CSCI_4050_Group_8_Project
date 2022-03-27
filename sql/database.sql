@@ -78,12 +78,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`) VALUES
-(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(2, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(3, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(4, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(5, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(6, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg');
+(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 9780136061250, 'Education', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(2, 'Warriors #1: Into the Wild', 'Erin Hunter', 9780062366962, 'Warrior #1', 7.99, 'Fiction', 'Book', 7, 'images/warrior1.jpg'),
+(3, 'Warriors #2: Fire and Ice', 'Erin Hunter', 9780060000035, 'Warrior #2', 6.99, 'Fiction', 'Book', 8, 'images/warrior2.jpg'),
+(4, 'Warriors #3: Forest of Secrets', 'Erin Hunter', 9780062366986, 'Warrior #3', 5.99, 'Fiction', 'Book', 9, 'images/warrior3.jpg'),
+(5, 'Warriors #4: Rising Storm', 'Erin Hunter', 9780060525620, 'Warrior #4', 4.99, 'Fiction', 'Book', 11, 'images/warrior4.jpg'),
+(6, 'Warriors #5: A Dangerous Path', 'Erin Hunter', 9780060000066, 'Warrior #5', 8.99, 'Fiction', 'Book', 3, 'images/warrior5.jpg');
 
 -- --------------------------------------------------------
 
