@@ -42,7 +42,7 @@
 		</ul>
 	<?php }; ?>
 	<div id='menu_div'>
-		<form action="catalog_page.html" method="post">
+		<form action="catalog_page.php" method="post">
 			<h2>Explore our library!</h2>
 			<p>We offer an assortment of different genres of books!</p>
 			<button type="submit" class='menu_items_button' name="books">Browse</button>
