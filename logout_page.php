@@ -1,13 +1,28 @@
-<?php include('session_header.php'); ?>
+<?php
+include('session_header.php');
+
+if ($_SESSION['loginst'] == 0) {
+	header("Location: login_page.php");
+}
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booksDatabase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+?>
 
 <!DOCTYPE html>
-
 <html>
 
-
 <head>
-
-	<title>Login Page</title>
+	<title>Logout Page</title>
 
 	<!--Bootstrap 5-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
@@ -15,34 +30,17 @@
 
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/styles.css">
-
-	<style>
-		form {
-			display: table;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		form.p {
-			display: table-row;
-		}
-
-		label {
-			display: table-cell;
-		}
-
-		input {
-			display: table-cell;
-		}
-	</style>
-
 </head>
 
 <body>
-
 	<div id="header">
 		<img src="./images/headpugnobg.jpg" alt="pugbook" width="250" height="140">
 		<h1>Book Store</h1>
+	</div>
+	<div class='logout'>
+		<?php
+		$_SESSION['loginst'] = 0;
+		?>
 	</div>
 	<?php if ($_SESSION['loginst'] == 0) { ?>
 		<ul id="navbar_div">
@@ -50,7 +48,7 @@
 			<li><a href="catalog_page.php">Browse</a></li>
 			<li><a href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
-			<li><a class="active" href="login_page.php">Login</a></li>
+			<li><a href="login_page.php">Login</a></li>
 			<li><a href="registration_page.php">Register</a></li>
 		</ul>
 	<?php } else { ?>
@@ -62,39 +60,26 @@
 			<li><a href="cart_page.html">Cart</a></li>
 			<li><a href="checkout_page.html">Checkout</a></li>
 			<li><a href="order_history_page.html">Order History</a></li>
-			<li><a href="logout_page.php">Logout</a></li>
+			<li><a class="active" href="logout_page.php">Logout</a></li>
 			<li><a href="manage_account_page.html">Manage Account</a></li>
 		</ul>
 	<?php }; ?>
-	<div id="loginPage">
-
-		<form action="validate_login.php" method="post">
-
-
-			<h2 id="newAccountHeader">Log In</h2>
-			<div>
-				<label for="uname">Username: </label>
-				<input class="registration" type="text" name="uname" id="uname" required><br>
-			</div>
-			<div>
-				<label for="password">Password: </label>
-				<input class="registration" type="password" name="password" id="password" required><br><br>
-			</div>
-			<input class="registrationSubmit" type="submit" name="submit" id="submit" value="Login">
-
-		</form>
 	</div>
-
-
-
-
-
+	<?php
+	// $query = "DELETE FROM cart";
+	// mysqli_query($conn, $query);
+	session_unset();
+	session_destroy();
+	?>
+	<div id='menu_div'>
+		<h2>You have successfully logged out!</h2>
+	</div>
+	<footer id='footer'>
+		<p>&copy; Book Store</p>
+	</footer>
 </body>
 
 
-<footer id='footer'>
-	<p>&copy; Book Store</p>
-</footer>
 
 
 </html>

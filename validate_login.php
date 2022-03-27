@@ -4,7 +4,7 @@
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$dbname = "java_zone_database";
+	$dbname = "booksDatabase";
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -45,8 +45,9 @@
 			$_SESSION['userID'] = $datas['userID'];
 		}
 		include('home_page.php');
+		echo $_SESSION['loginst'];
 	} else {
-		include('error.html');
+		include('error.php');
 		$conn->close();
 	}
 ?>

@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 -- Database: `books_database`
 --
 
-CREATE DATABASE booksDatabase;
+/* CREATE DATABASE booksDatabase; */
+/* USE booksDatabase; */
 
 -- --------------------------------------------------------
 
@@ -44,7 +45,7 @@ CREATE TABLE `cart` (
 -- Table structure for table `order_summary`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `orderID` int(11) NOT NULL,
   `paymentStatus` varchar(256) NOT NULL,
   `grandTotal` double,
@@ -62,6 +63,7 @@ CREATE TABLE `order` (
 CREATE TABLE `products` (
   `prodID` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
+  `author` varchar(256) NOT NULL,
   `ISBN` double NOT NULL,
   `description` varchar(256) NOT NULL,
   `price` double NOT NULL,
@@ -75,13 +77,13 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`prodID`, `name`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`) VALUES
-(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(2, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(3, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(4, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(5, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
-(6, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg');
+INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`) VALUES
+(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(2, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(3, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(4, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(5, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(6, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 978-0136061250, 'SE BOOK', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,7 @@ INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, 
 (1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true'),
 (2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true'),
 (3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true'),
-(3, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true');
+(4, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true');
 
 
 -- --------------------------------------------------------
@@ -152,12 +154,12 @@ CREATE TABLE `paymentInfo` (
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`numID`);
+  ADD PRIMARY KEY (`cartID`);
 
 --
 -- Indexes for table `order_summary`
 --
-ALTER TABLE `order_summary`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderID`),
   ADD KEY `userID` (`userID`);
 
@@ -165,7 +167,7 @@ ALTER TABLE `order_summary`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`productID`);
+  ADD PRIMARY KEY (`prodID`);
 
 --
 -- Indexes for table `users`
@@ -182,19 +184,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `numID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_summary`
 --
-ALTER TABLE `order_summary`
+ALTER TABLE `orders`
   MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `prodID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
