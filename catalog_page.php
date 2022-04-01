@@ -33,6 +33,41 @@ $_SESSION['pageID'] = 1;
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/styles.css">
 
+    <script>
+        function myFunction() {
+        // Declare variables 
+        var input, filter, table, tr, td, th, i, txtValue, selected, strSelected, a;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        
+        // Filter by selected (Title or Author)
+        selected = document.getElementById("filBy");
+        strSelected = selected.options[selected.selectedIndex].text;
+        a = 1;
+        if(strSelected === "Title") a = 1;
+        if(strSelected === "Author") a = 2;
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[a];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    tr[i-1].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                    tr[i-1].style.display = "none";
+                }
+            } 
+        }
+        }
+    </script>
+
+
+
     <style>
         #searchbar {
             margin: 50px 50px 50px;
@@ -78,9 +113,9 @@ $_SESSION['pageID'] = 1;
 
     <div class="text-center">
         <form id="searchbar" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" id="myInput" onkeyup="myFunction() "placeholder="Search.." name="search">
             <button type="submit">Search</button>
-            <select class="category" name="category">
+            <select id="filBy" class="category" name="category">
                 <option value="title">Title</option>
                 <option value="subject">Subject</option>
                 <option value="isbn">ISBN</option>
@@ -93,7 +128,7 @@ $_SESSION['pageID'] = 1;
 
 
 
-    <table class="table table-hover">
+    <table id="myTable" class="table table-hover">
         <?php foreach ($items as $item) { ?>
             <thead>
                 <tr>
