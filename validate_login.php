@@ -31,7 +31,7 @@
 	$query3 = "SELECT products.name, cart.quantity, cart.productID, products.price FROM cart JOIN products ON cart.productID = products.productID";
 	$cartItems = $conn->query($query3);
 
-	$query2 = "SELECT userID FROM users WHERE username='$uname' AND password='$password'";
+	$query2 = "SELECT userID, userType FROM users WHERE username='$uname' AND password='$password'";
 	mysqli_query($conn, $query2);
 
 
@@ -43,6 +43,7 @@
 		$_SESSION['loginst'] = 1;
 		foreach($data as $datas){
 			$_SESSION['userID'] = $datas['userID'];
+			$_SESSION['userType'] = $datas['userType'];
 		}
 		include('home_page.php');
 		echo $_SESSION['loginst'];

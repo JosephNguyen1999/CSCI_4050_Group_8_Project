@@ -35,7 +35,7 @@ if ($conn->connect_error) {
 <body>
 	<div id="header">
 		<img src="./images/headpugnobg.jpg" alt="pugbook" width="250" height="140">
-		<h1>Book Store</h1>
+		<h1>TheBookStore</h1>
 	</div>
 	<div class='logout'>
 		<?php
@@ -51,23 +51,64 @@ if ($conn->connect_error) {
 			<li><a href="login_page.php">Login</a></li>
 			<li><a href="registration_page.php">Register</a></li>
 		</ul>
-	<?php } else { ?>
+	<?php } else if ($_SESSION['userType'] == 'admin') { ?>
 		<ul id="navbar_div">
 			<li><a href="home_page.php">Home</a></li>
+			<li><a href="manage_account_page.php">Manage Account</a></li>
+			<li><a href="administrator_page.php">Administrator Page</a></li>
 			<li><a href="catalog_page.php">Browse</a></li>
 			<li><a href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
-			<li><a href="cart_page.html">Cart</a></li>
-			<li><a href="checkout_page.html">Checkout</a></li>
-			<li><a href="order_history_page.html">Order History</a></li>
+			<li><a href="cart_page.php">Cart</a></li>
+			<li><a href="checkout_page.php">Checkout</a></li>
+			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a class="active" href="logout_page.php">Logout</a></li>
-			<li><a href="manage_account_page.html">Manage Account</a></li>
+		</ul>
+	<?php } else if ($_SESSION['userType'] == 'user') { ?>
+		<ul id="navbar_div">
+			<li><a href="home_page.php">Home</a></li>
+			<li><a href="manage_account_page.php">Manage Account</a></li>
+			<li><a href="catalog_page.php">Browse</a></li>
+			<li><a href="about_page.php">About</a></li>
+			<li><a href="contact_page.php">Contact Us</a></li>
+			<li><a href="cart_page.php">Cart</a></li>
+			<li><a href="checkout_page.php">Checkout</a></li>
+			<li><a href="order_history_page.php">Order History</a></li>
+			<li><a class="active" href="logout_page.php">Logout</a></li>
+		</ul>
+	<?php } else if ($_SESSION['userType'] == 'publisher') { ?>
+		<ul id="navbar_div">
+			<li><a href="home_page.php">Home</a></li>
+			<li><a href="manage_account_page.php">Manage Account</a></li>
+			<li><a href="publishers_page.php">Publisher Page</a></li>
+			<li><a href="catalog_page.php">Browse</a></li>
+			<li><a href="about_page.php">About</a></li>
+			<li><a href="contact_page.php">Contact Us</a></li>
+			<li><a href="cart_page.php">Cart</a></li>
+			<li><a href="checkout_page.php">Checkout</a></li>
+			<li><a href="order_history_page.php">Order History</a></li>
+			<li><a class="active" href="logout_page.php">Logout</a></li>
+		</ul>
+	<?php } else if ($_SESSION['userType'] == 'business') { ?>
+		<ul id="navbar_div">
+			<li><a href="home_page.php">Home</a></li>
+			<li><a href="manage_account_page.php">Manage Account</a></li>
+			<li><a href="business_owner_page.php">Business Owner Page</a></li>
+			<li><a href="catalog_page.php">Browse</a></li>
+			<li><a href="about_page.php">About</a></li>
+			<li><a href="contact_page.php">Contact Us</a></li>
+			<li><a href="cart_page.php">Cart</a></li>
+			<li><a href="checkout_page.php">Checkout</a></li>
+			<li><a href="order_history_page.php">Order History</a></li>
+			<li><a class="active" href="logout_page.php">Logout</a></li>
 		</ul>
 	<?php }; ?>
 	</div>
 	<?php
-	// $query = "DELETE FROM cart";
-	// mysqli_query($conn, $query);
+	$updateAllQuery = "UPDATE products p JOIN cart c ON c.uniqueID = p.prodID SET p.quantity = p.quantity + c.cartQuantity";
+	mysqli_query($conn, $updateAllQuery);
+	$deleteAllQuery = "DELETE FROM cart";
+	mysqli_query($conn, $deleteAllQuery);
 	session_unset();
 	session_destroy();
 	?>
@@ -75,7 +116,7 @@ if ($conn->connect_error) {
 		<h2>You have successfully logged out!</h2>
 	</div>
 	<footer id='footer'>
-		<p>&copy; Book Store</p>
+		<p>&copy; TheBookStore</p>
 	</footer>
 </body>
 

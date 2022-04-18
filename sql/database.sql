@@ -31,12 +31,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cart` (
-  `cartID` int(11) NOT NULL,
+  `cartID` int(11),
   `userID` int(11) NOT NULL,
   `uniqueID` int(11) NOT NULL,
   `cartQuantity` int(11) NOT NULL,
-  `total` double,
-  `grandTotal` int(11) NOT NULL
+  `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
