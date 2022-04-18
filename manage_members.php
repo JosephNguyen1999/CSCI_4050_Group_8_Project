@@ -38,7 +38,13 @@ $items = $conn->query($query);
         #searchbar {
             margin: 50px 50px 50px;
         }
+        .form-popup {
+            display:none;
+            
+        }
+
     </style>
+
 </head>
 
 <body>
@@ -129,31 +135,7 @@ $items = $conn->query($query);
     </div>
 
 
-
-
-<!--
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Joseph</td>
-                <td>Nguyen</td>
-                <td>hello@uga.edu</td>
-                <td><button type="button" class='edit' name="edit">Edit</button></td>
-            </tr>
-        </tbody>
-    </table>
-    -->
-    
+    <!--DISPLAY USERS DYNAMICALLY-->
     <table id="myTable" class="table table-hover">
             <thead>
                 <tr>
@@ -171,12 +153,55 @@ $items = $conn->query($query);
                         <td> <p><?php echo $item['firstName']?></p> </td>
                         <td> <p><?php echo $item['lastName']?></p> </td>
                         <td> <p><?php echo $item['email']?></p> </td>
-                        <td><button type="button" class='edit' name="edit">Edit</button></td>
+                        
+                        <td><button class="open-button" onclick="openForm(
+                            '<?php echo $item['firstName']?>',
+                            '<?php echo $item['lastName']?>',
+                            '<?php echo $item['email']?>'
+                            )">Edit</button>
+                        </td>
                     </tr>
                 </tbody>
             <?php } ?>
-        </table>
+    </table>
 
+    <!--Popup form for admin to edit user info-->
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+        <h1>Manage</h1>
+
+        <label for="first"><b>First Name</b></label>
+        <input type="text" placeholder="Enter Password" name="first" value="" required>
+
+        <label for="last"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter Password" name="last" value="" required>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" value="" required>
+
+        <button type="submit" class="btn">modify</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
+    <!--Open and close scripts-->
+    <script>
+        function openForm(firstN, lastN, email) {
+            document.getElementById("myForm").style.display = "block";
+            document.getElementById("myTable").style.display = "none";
+            document.getElementById("searchbar").style.display = "none";
+
+            document.getElementsByName("first")[0].value=firstN;
+            document.getElementsByName("last")[0].value=lastN;
+            document.getElementsByName("email")[0].value=email;
+
+        }
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+            document.getElementById("myTable").style.display = "";
+            document.getElementById("searchbar").style.display = "";
+        }
+    </script>
 
     <footer id='footer'>
         <p>&copy; TheBookStore</p>
