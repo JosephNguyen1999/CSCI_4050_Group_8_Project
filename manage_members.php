@@ -39,8 +39,32 @@ $items = $conn->query($query);
             margin: 50px 50px 50px;
         }
         .form-popup {
+            margin: auto;
             display:none;
-            
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 33%;
+            position: fixed;
+            bottom:25%;
+            left:33%;
+        }
+        input[type=text]{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px, 0;
+            display: inline-block;
+        }
+        #overlay {
+            position:fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display:none;
+            background-color: rgba(0,0,0,0.5);
         }
 
     </style>
@@ -166,30 +190,33 @@ $items = $conn->query($query);
     </table>
 
     <!--Popup form for admin to edit user info-->
+    <div id="overlay">
     <div class="form-popup" id="myForm">
         <form action="/action_page.php" class="form-container">
-        <h1>Manage</h1>
+        <h1>Manage User</h1>
 
-        <label for="first"><b>First Name</b></label>
-        <input type="text" placeholder="Enter Password" name="first" value="" required>
+        <label for="first">First Name</label>
+        <input type="text" placeholder="Enter Password" name="first" value="" required><br>
 
-        <label for="last"><b>Last Name</b></label>
-        <input type="text" placeholder="Enter Password" name="last" value="" required>
+        <label for="last">Last Name</label>
+        <input type="text" placeholder="Enter Password" name="last" value="" required><br>
 
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" value="" required>
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter Email" name="email" value="" required><br>
 
-        <button type="submit" class="btn">modify</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        <i>Changes made to this form will modify this users account.</i><br>
+
+        <button type="submit">Modify</button>
+        <button type="button" onclick="closeForm()">Close</button>
         </form>
+    </div>
     </div>
 
     <!--Open and close scripts-->
     <script>
         function openForm(firstN, lastN, email) {
-            document.getElementById("myForm").style.display = "block";
-            document.getElementById("myTable").style.display = "none";
-            document.getElementById("searchbar").style.display = "none";
+            document.getElementById("myForm").style.display = "inline-block";
+            document.getElementById("overlay").style.display = "block";
 
             document.getElementsByName("first")[0].value=firstN;
             document.getElementsByName("last")[0].value=lastN;
@@ -200,6 +227,7 @@ $items = $conn->query($query);
             document.getElementById("myForm").style.display = "none";
             document.getElementById("myTable").style.display = "";
             document.getElementById("searchbar").style.display = "";
+            document.getElementById("overlay").style.display = "none";
         }
     </script>
 
