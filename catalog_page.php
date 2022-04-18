@@ -68,10 +68,8 @@ $_SESSION['pageID'] = 1;
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
-                        //tr[i - 1].style.display = "";
                     } else {
                         tr[i].style.display = "none";
-                        //tr[i - 1].style.display = "none";
                     }
                 }
             }

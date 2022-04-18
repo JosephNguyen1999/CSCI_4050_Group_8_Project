@@ -3,6 +3,22 @@
 if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
     header("Location: login_page.php");
 }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booksDatabase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$query = "SELECT * FROM users";
+$items = $conn->query($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +131,7 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
 
 
 
-
+<!--
     <table class="table table-hover">
         <thead>
             <tr>
@@ -136,8 +152,30 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
             </tr>
         </tbody>
     </table>
-
-
+    -->
+    
+    <table id="myTable" class="table table-hover">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                </tr>
+            </thead>
+            <?php foreach ($items as $item) { ?>
+                <tbody>
+                    <tr>
+                        <td> <p><?php echo $item['userID']?></p> </td>
+                        <td> <p><?php echo $item['firstName']?></p> </td>
+                        <td> <p><?php echo $item['lastName']?></p> </td>
+                        <td> <p><?php echo $item['email']?></p> </td>
+                        <td><button type="button" class='edit' name="edit">Edit</button></td>
+                    </tr>
+                </tbody>
+            <?php } ?>
+        </table>
 
 
     <footer id='footer'>
