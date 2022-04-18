@@ -45,12 +45,16 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `orders` (
-  `orderID` int(11) NOT NULL,
+  `uniqueID` int(11) NOT NULL,
   `paymentStatus` varchar(256) NOT NULL,
   `grandTotal` double,
   `userID` int(11) NOT NULL,
   `address` varchar(256) NOT NULL,
-  `orderType` varchar(256) NOT NULL
+  `orderType` varchar(256) NOT NULL,
+  `prodID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `orderID` int(11) NOT NULL,
+  `orderDate` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -100,7 +104,8 @@ CREATE TABLE `users` (
   `email` varchar(256) NOT NULL,
   `phoneNumber` varchar(11) NOT NULL,
   `verificationCode` int(11) NOT NULL,
-  `verificationStatus` varchar(256) NOT NULL
+  `verificationStatus` varchar(256) NOT NULL,
+  `subscribeStatus` int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
