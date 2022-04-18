@@ -181,7 +181,8 @@ $items = $conn->query($query);
                         <td><button class="open-button" onclick="openForm(
                             '<?php echo $item['firstName']?>',
                             '<?php echo $item['lastName']?>',
-                            '<?php echo $item['email']?>'
+                            '<?php echo $item['email']?>',
+                            '<?php echo $item['userID']?>'
                             )">Edit</button>
                         </td>
                     </tr>
@@ -192,7 +193,7 @@ $items = $conn->query($query);
     <!--Popup form for admin to edit user info-->
     <div id="overlay">
     <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
+        <form action="manage_member_action.php" method="post" class="form-container">
         <h1>Manage User</h1>
 
         <label for="first">First Name</label>
@@ -207,6 +208,9 @@ $items = $conn->query($query);
         <i>Changes made to this form will modify this users account.</i><br>
 
         <button type="submit">Modify</button>
+
+        <input type="hidden" name="uid">
+
         <button type="button" onclick="closeForm()">Close</button>
         </form>
     </div>
@@ -214,19 +218,18 @@ $items = $conn->query($query);
 
     <!--Open and close scripts-->
     <script>
-        function openForm(firstN, lastN, email) {
+        function openForm(firstN, lastN, email, userid) {
             document.getElementById("myForm").style.display = "inline-block";
             document.getElementById("overlay").style.display = "block";
 
             document.getElementsByName("first")[0].value=firstN;
             document.getElementsByName("last")[0].value=lastN;
             document.getElementsByName("email")[0].value=email;
+            document.getElementsByName("uid")[0].value=userid;
 
         }
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
-            document.getElementById("myTable").style.display = "";
-            document.getElementById("searchbar").style.display = "";
             document.getElementById("overlay").style.display = "none";
         }
     </script>
