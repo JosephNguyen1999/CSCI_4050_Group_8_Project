@@ -27,9 +27,9 @@
 	$query = "SELECT * FROM users WHERE username='$uname' AND password='$password'";
 	$data = $conn->query($query);
 
-
-	$query3 = "SELECT products.name, cart.quantity, cart.productID, products.price FROM cart JOIN products ON cart.productID = products.productID";
-	$cartItems = $conn->query($query3);
+//  This query breaks validate login. Should cart.quantity be cart.cartQuantity?	
+//	$query3 = "SELECT products.name, cart.quantity, cart.productID, products.price FROM cart JOIN products ON cart.productID = products.productID";
+//	$cartItems = $conn->query($query3);
 
 	$query2 = "SELECT userID, userType FROM users WHERE username='$uname' AND password='$password'";
 	mysqli_query($conn, $query2);
