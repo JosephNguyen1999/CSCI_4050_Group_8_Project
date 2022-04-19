@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 $fname = $_POST['firstname'];
 $lname = $_POST['lastname'];
 $phnum = $_POST['phonenum'];
-$uid = $_SESSION['userName'];
+$uid = 1;
 echo $fname . " " . $lname . " " . $phnum . " " . $uid;
 
 $query = "UPDATE `users`
@@ -26,6 +26,6 @@ $conn->query($query);
 
 $conn->close();
 
-//header("Location: manage_account_page.php");
-//exit;
+header("Location: manage_account_page.php");
+exit;
 ?>
