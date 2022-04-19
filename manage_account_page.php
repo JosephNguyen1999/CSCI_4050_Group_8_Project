@@ -177,6 +177,7 @@ $conn->close();
         <label for="subscribe">
         <input type="checkbox">Subscribe for Promotions</label>  
         <hr>
+
         <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
         <input class="registrationSubmit" type="submit" id="deleteAccount" formaction="delete_account.php" value="DELETE ACCOUNT">
     </form>

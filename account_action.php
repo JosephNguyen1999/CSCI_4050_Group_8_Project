@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 $fname = $_POST['firstname'];
 $lname = $_POST['lastname'];
 $phnum = $_POST['phonenum'];
-$uid = $_SESSION['userID'];
+$uid = 1;
 echo $fname . " " . $lname . " " . $phnum . " " . $uid;
 
 $query = "UPDATE `users`
