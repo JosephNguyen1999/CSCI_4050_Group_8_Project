@@ -28,8 +28,8 @@
 	$data = $conn->query($query);
 
 
-	$query3 = "SELECT products.name, cart.quantity, cart.productID, products.price FROM cart JOIN products ON cart.productID = products.productID";
-	$cartItems = $conn->query($query3);
+	// $query3 = "SELECT products.name, cart.quantity, cart.productID, products.price FROM cart JOIN products ON cart.productID = products.productID";
+	// $cartItems = $conn->query($query3);
 
 	$query2 = "SELECT userID, userType FROM users WHERE username='$uname' AND password='$password'";
 	mysqli_query($conn, $query2);
