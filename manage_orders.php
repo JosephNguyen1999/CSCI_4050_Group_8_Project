@@ -56,7 +56,7 @@ $conn->close();
             bottom:25%;
             left:33%;
         }
-        input[type=text]{
+        input[type=text], input[type=number],input[type=date]{
             width: 100%;
             padding: 12px, 20px;
             margin: 8px, 0;
@@ -235,10 +235,10 @@ $conn->close();
         <h1>Manage Order</h1>
 
         <label for="quant">Quantity</label>
-        <input type="text" name="quant" value="" required><br>
+        <input type="number" name="quant" value="" required><br>
 
-        <label for="total">Last Name</label>
-        <input type="text"  name="total" value="" required><br>
+        <label for="total">Grand Total</label>
+        <input type="number"  name="total" min="1" step="any" value="" required><br>
 
         <label for="date">Date</label>
         <input type="text"  name="date" value="" required><br>
