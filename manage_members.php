@@ -1,8 +1,8 @@
 <?php include_once('session_header.php');
-
-if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
-    header("Location: login_page.php");
-}
+/**
+*if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
+*    header("Location: login_page.php");
+*} */
 
 $servername = "localhost";
 $username = "root";
@@ -19,6 +19,7 @@ if ($conn->connect_error) {
 $query = "SELECT * FROM users";
 $items = $conn->query($query);
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
