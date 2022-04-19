@@ -18,7 +18,6 @@ $uid = $_POST['uid'];
 //echo $fname . " " . $lname . " " . $email . " " . $uid; //debug
 
 
-
 $query = "UPDATE `users`
     SET `firstName`='$fname',
         `lastName`='$lname',
@@ -27,6 +26,8 @@ $query = "UPDATE `users`
 
 $conn->query($query);
 $conn->close();
+
+
 
 header("Location: manage_members.php");
 ?>
