@@ -10,7 +10,7 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
 <html>
 
 <head>
-    <title>Home Page</title>
+    <title>Administrator Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">

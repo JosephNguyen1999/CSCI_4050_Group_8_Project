@@ -3,6 +3,24 @@
 if ($_SESSION['loginst'] == 0) {
     header("Location: login_page.php");
 }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booksDatabase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$query = "SELECT * FROM users WHERE userID=$_SESSION[userID]";
+$items = $conn->query($query);
+$item = $items->fetch_assoc();
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -19,25 +37,43 @@ if ($_SESSION['loginst'] == 0) {
     <link rel="stylesheet" href="styles/styles.css">
 
     <style>
-        form {
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 100px;
+        .form-box {
+            margin: auto;
+            display:block;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 50%;
+            left:25%;
+        }
+        input[type=text], input[type=number]{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px, 0;
+            float:inline-end;
+        }
+        input[type=submit] {
+            float:right;
+            margin-left: 8px;
+        }
+        input[type=checkbox] {
+            margin-top: 16px;
+            margin-right: 8px;
+        }
+        .col75 {
+            float:left;
+            width: 75%;
+            margin-top: 6px;
+        }
+        .col25 {
+            float:left;
+            width: 25%;
+            margin-top: 6px;
         }
 
-        form.p {
-            display: table-row;
-        }
-
-        label {
-            display: table-cell;
-        }
-
-        input {
-            display: table-cell;
-        }
+        
     </style>
+
 </head>
 
 <body>
@@ -107,6 +143,57 @@ if ($_SESSION['loginst'] == 0) {
         </ul>
     <?php }; ?>
 
+
+
+    <br>
+    <div class="form-box">
+        <h1>Manage Account</h1>
+    <form action="account-action.php">
+        <div class="col25">
+            <label for="email">Email</label>
+        </div>
+        <div class="col75">
+            <input type="text" name="email" value="skgh" readonly>
+        </div>
+        <div class="col25">
+            <label for="firstname">First Name</label>    
+        </div>
+        <div class="col75">
+            <input type="text" name="firstname">
+        </div>
+        <div class="col25">
+            <label for="lastname">Last Name</label>    
+        </div>
+        <div class="col75">
+            <input type="text" name="lastname">    
+        </div>
+        <div class="col25">
+            <label for="phonenum">Phone Number</label>    
+        </div>
+        <div class="col75">
+            <input type="text" name="phonenum">    
+        </div>
+
+        <label for="subscribe">
+        <input type="checkbox">Subscribe for Promotions</label>  
+        <hr>
+        <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
+        <input class="registrationSubmit" type="submit" id="deleteAccount" value="DELETE ACCOUNT">
+    </form>
+    <br>
+    </div>
+
+    <script>
+            document.getElementsByName("email")[0].value="<?php echo $item['email'];?>";
+            document.getElementsByName("firstname")[0].value="<?php echo $item['firstName'];?>";
+            document.getElementsByName("lastname")[0].value="<?php echo $item['lastName'];?>";
+            document.getElementsByName("phonenum")[0].value=<?php echo $item['phoneNumber'];?>;
+    </script>
+
+
+    
+
+    <!-- <div class="form-box">
     <form action="addUserAction.php" method="post">
         <div>
             <h2 id="newAccountHeader">EDIT ACCOUNT</h2>
@@ -166,6 +253,7 @@ if ($_SESSION['loginst'] == 0) {
             <input class="registrationSubmit" type="submit" id="deleteAccount" value="DELETE ACCOUNT">
         </div>
     </form>
+    </div> -->
 
     <footer id='footer'>
         <p>&copy; TheBookStore</p>
