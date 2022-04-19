@@ -148,7 +148,7 @@ $conn->close();
     <br>
     <div class="form-box">
         <h1>Manage Account</h1>
-    <form action="account-action.php">
+    <form action="account_action.php" method="post">
         <div class="col25">
             <label for="email">Email</label>
         </div>
@@ -159,26 +159,26 @@ $conn->close();
             <label for="firstname">First Name</label>    
         </div>
         <div class="col75">
-            <input type="text" name="firstname">
+            <input type="text" name="firstname" required>
         </div>
         <div class="col25">
             <label for="lastname">Last Name</label>    
         </div>
         <div class="col75">
-            <input type="text" name="lastname">    
+            <input type="text" name="lastname" required>    
         </div>
         <div class="col25">
             <label for="phonenum">Phone Number</label>    
         </div>
         <div class="col75">
-            <input type="text" name="phonenum">    
+            <input type="text" name="phonenum" required>    
         </div>
 
         <label for="subscribe">
         <input type="checkbox">Subscribe for Promotions</label>  
         <hr>
         <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
-        <input class="registrationSubmit" type="submit" id="deleteAccount" value="DELETE ACCOUNT">
+        <input class="registrationSubmit" type="submit" id="deleteAccount" formaction="delete_account.php" value="DELETE ACCOUNT">
     </form>
     <br>
     </div>
