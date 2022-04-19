@@ -41,24 +41,33 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_summary`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
-  `uniqueID` int(11) NOT NULL,
+  `orderID` int(11) NOT NULL,
   `paymentStatus` varchar(256) NOT NULL,
   `grandTotal` double,
   `userID` int(11) NOT NULL,
   `address` varchar(256) NOT NULL,
   `orderType` varchar(256) NOT NULL,
-  `prodID` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `orderID` int(11) NOT NULL,
   `orderDate` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `cartHistory`
+--
+
+CREATE TABLE `cartHistory` (
+  `cartHID` int(11) NOT NULL,
+  `orderID` int(11) NOT NULL,
+  `prodID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 --
 -- Table structure for table `products`
 --
@@ -112,11 +121,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, `password`, `email`, `phoneNumber`, `verificationCode`, `verificationStatus`) VALUES
-(1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true'),
-(2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true'),
-(3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true'),
-(4, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true');
+INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, `password`, `email`, `phoneNumber`, `verificationCode`, `verificationStatus`, `subscribeStatus`) VALUES
+(1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true', 0),
+(2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true', 0),
+(3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true', 0),
+(4, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true', 0);
 
 
 -- --------------------------------------------------------
@@ -151,6 +160,25 @@ CREATE TABLE `paymentInfo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Table structure for table `promoCodes`
+--
+
+CREATE TABLE `promoCodes` (
+  `promoID` int(11) NOT NULL,
+  `promoCode` varchar(256) NOT NULL,
+  `promoNumber` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `promoCodes` (`promoID`, `promoCode`, `promoNumber`) VALUES
+(1, '25OFF', 0.25),
+(2, 'MINUS10', 10);
+
+
+--
 -- Indexes for dumped tables
 --
 
@@ -181,6 +209,19 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `promoCodes`
+  ADD PRIMARY KEY (`promoID`);
+  
+  
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `cartHistory`
+  ADD PRIMARY KEY (`cartHID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -208,6 +249,18 @@ ALTER TABLE `products`
 ALTER TABLE `users`
   MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+--
+-- AUTO_INCREMENT for table `order_summary`
+--
+ALTER TABLE `promoCodes`
+  MODIFY `promoID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_summary`
+--
+ALTER TABLE `cartHistory`
+  MODIFY `cartHID` int(11) NOT NULL AUTO_INCREMENT;
+  
 --
 -- Constraints for dumped tables
 --
