@@ -49,7 +49,7 @@
         VALUES ('user', '$first', '$last', '$user', '$pass', '$email', '$phone', '1', 'true')";
 		
 		if(mysqli_query($conn, $sql)){
-			echo "Account Succesfully Created!";
+			echo "Account Successfully Created!";
 			include('registration_page.php');
 			}
 			else

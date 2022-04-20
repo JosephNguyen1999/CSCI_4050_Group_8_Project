@@ -52,7 +52,8 @@ CREATE TABLE `orders` (
   `name` varchar(256) NOT NULL,
   `address` varchar(256) NOT NULL,
   `orderType` varchar(256) NOT NULL,
-  `orderDate` varchar(256) NOT NULL
+  `orderDate` varchar(256) NOT NULL,
+  `confirmationNumber` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -118,7 +119,9 @@ CREATE TABLE `users` (
   `phoneNumber` varchar(11) NOT NULL,
   `verificationCode` int(11) NOT NULL,
   `verificationStatus` varchar(256) NOT NULL,
-  `subscribeStatus` int(11)
+  `subscribeStatus` int(11) NOT NULL,
+  `birthDate` varchar(256) NOT NULL,
+  `address` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
