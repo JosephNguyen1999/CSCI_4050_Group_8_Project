@@ -14,13 +14,17 @@ if ($conn->connect_error) {
 $fname = $_POST['firstname'];
 $lname = $_POST['lastname'];
 $phnum = $_POST['phonenum'];
+$sub = 0;
+if($_POST['subscribe'] == 'yes') $sub = 1;
 $uid = 1;
+
 echo $fname . " " . $lname . " " . $phnum . " " . $uid;
 
 $query = "UPDATE `users`
     SET `firstName`='$fname',
     `lastName`='$lname',
-    `phoneNumber`=$phnum
+    `phoneNumber`=$phnum,
+    `subscribeStatus`=$sub
     WHERE `userID`=$uid";
 $conn->query($query);
 

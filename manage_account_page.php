@@ -175,86 +175,36 @@ $conn->close();
         </div>
 
         <label for="subscribe">
-        <input type="checkbox">Subscribe for Promotions</label>  
+        <input type="checkbox" name="subscribe" value="yes">Subscribe for Promotions</label>  
         <hr>
 
-        <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
+        <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account" onclick="update()">
         <input class="registrationSubmit" type="submit" id="deleteAccount" formaction="delete_account.php" value="DELETE ACCOUNT">
     </form>
     <br>
     </div>
 
     <script>
-            document.getElementsByName("email")[0].value="<?php echo $item['email'];?>";
-            document.getElementsByName("firstname")[0].value="<?php echo $item['firstName'];?>";
-            document.getElementsByName("lastname")[0].value="<?php echo $item['lastName'];?>";
-            document.getElementsByName("phonenum")[0].value=<?php echo $item['phoneNumber'];?>;
+        document.getElementsByName("email")[0].value="<?php echo $item['email'];?>";
+        document.getElementsByName("firstname")[0].value="<?php echo $item['firstName'];?>";
+        document.getElementsByName("lastname")[0].value="<?php echo $item['lastName'];?>";
+        document.getElementsByName("phonenum")[0].value=<?php echo $item['phoneNumber'];?>;
+        if(<?php echo $item['subscribeStatus'];?> === 0) {
+                document.getElementsByName("subscribe")[0].checked=false;
+            }
+        else {
+                document.getElementsByName("subscribe")[0].checked=true;
+        }
+        function update() {
+            if(document.getElementsByName("subscribe")[0].checked === false) {
+                document.getElementsByName("subscribe")[0].value='no';
+            } else {
+                document.getElementsByName("subscribe")[0].value='yes';
+            }
+        }
     </script>
 
 
-    
-
-    <!-- <div class="form-box">
-    <form action="addUserAction.php" method="post">
-        <div>
-            <h2 id="newAccountHeader">EDIT ACCOUNT</h2>
-        </div>
-        <div>
-            <label for="firstname">First name: </label><input class="registration" type="text" name="firstname" required><br>
-            <label for="lasttname">Last name: </label><input class="registration" type="text" name="lastname" required><br>
-        </div>
-        <div>
-            <label for="email">Email Address: </label><input class="registration" type="email" name="email" required><br>
-        </div>
-        <div>
-            <label for="date">Birth Date: </label>
-            <input type="date" name="date" id="date">
-        </div>
-        <div>
-            <label for="password">Password: </label><input class="registration" type="password" name="password" required><br>
-            <label for="password2">Confirm Password: </label><input class="registration" type="password" name="password2" required><br>
-        </div>
-        <div>
-            <label for="country">Country: </label><select class="registration" name="country">
-                <option value="select"><em>Select a Country</em></option>
-                <option value="US">United States of America</option>
-                <option value="Canada">Canada</option>
-            </select><br>
-        </div>
-        <div>
-            <label for="zipcode">Zipcode: </label><input class="registration" type="number" name="zipcode"><br>
-        </div>
-        <div>
-            <label for="city">City: </label><input class="registration" type="text" name="city" required><br>
-            <label for="state">State: </label><input class="registration" type="text" name="state" required><br>
-        </div>
-
-        <div>
-            <label for="address">Address: </label><input class="registration" type="text" name="address" required><br>
-        </div>
-
-
-        <div>
-            <label for="phone">Phone Number: </label><input class="registration" type="number" name="phone"><br><br>
-        </div>
-
-        <div>
-            <label class="container">Subscribe For Promotions and Latest News
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label><br>
-        </div>
-
-        <div>
-            <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
-            <hr>
-        </div>
-
-        <div>
-            <input class="registrationSubmit" type="submit" id="deleteAccount" value="DELETE ACCOUNT">
-        </div>
-    </form>
-    </div> -->
 
     <footer id='footer'>
         <p>&copy; TheBookStore</p>
