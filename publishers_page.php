@@ -3,6 +3,23 @@
 if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'publisher') {
     header("Location: login_page.php");
 }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booksDatabase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$query = "";
+
+$conn->query($query);
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -113,37 +130,38 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'publisher') {
         </form>
     </div>
 
-
-
-
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th></th>
+    <table id="myTable" class="table table-hover">
+            <thead>
+                <tr>
                 <th>Title</th>
+                <th>Subject</th>
+                <th>ISBN</th>
                 <th>Author</th>
+                <th>Quantity</th>
                 <th>Price</th>
                 <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><img src="images/0136061257.jpg" height="150px"></td>
-                <td><a href="book_detail_page.php">Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition</a></td>
-                <td>Bernd Bruegge, Allen H. Dutoit</td>
-                <td>$116.25</td>
-                <td>
-                    <form action="edit_product.php" method="post">
-                        <button type="submit" class='edit' name="editProduct">Edit</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
+                </tr>
+            </thead>
+            <?php foreach ($items as $item) { ?>
+                <tbody>
+                    <tr>
+                        <td> <p><?php echo $item['orderID']?></p> </td> 
+                        <td> <p><?php echo $item['userID']?></p> </td> 
+                        <td> <p><?php echo $item['email']?></p> </td> 
+                        <td> <p><?php echo $item['phoneNumber']?></p> </td>
+                        <td> <p><?php echo $item['grandTotal']?></p> </td> 
+                        <td> <p><?php echo $item['orderDate']?></p> </td>
+                        
+                        <td><button class="open-button" onclick="openForm(
+                            '<?php echo $item['grandTotal']?>',
+                            '<?php echo $item['orderDate']?>',
+                            '<?php echo $item['orderID']?>'
+                            )">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            <?php } ?>
     </table>
-
-
-
 
     <footer id='footer'>
         <p>&copy; TheBookStore</p>

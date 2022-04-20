@@ -37,6 +37,17 @@ $conn->close();
     <link rel="stylesheet" href="styles/styles.css">
 
     <style>
+        #overlay {
+            position:fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display:none;
+            background-color: rgba(0,0,0,0.5);
+        }
         .form-box {
             margin: auto;
             display:block;
@@ -45,6 +56,17 @@ $conn->close();
             padding: 20px;
             width: 50%;
             left:25%;
+        }
+        .form-popup {
+            margin: auto;
+            display:none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 33%;
+            position: fixed;
+            bottom:25%;
+            left:33%;
         }
         input[type=text], input[type=number]{
             width: 100%;
@@ -175,86 +197,56 @@ $conn->close();
         </div>
 
         <label for="subscribe">
-        <input type="checkbox">Subscribe for Promotions</label>  
+        <input type="checkbox" name="subscribe" value="yes">Subscribe for Promotions</label>  
         <hr>
 
-        <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
-        <input class="registrationSubmit" type="submit" id="deleteAccount" formaction="delete_account.php" value="DELETE ACCOUNT">
+        <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account" onclick="update()">
+        <input class="registrationSubmit" type="button" id="deleteAccount" value="DELETE ACCOUNT" onclick="showWarning()">
     </form>
     <br>
     </div>
 
+    <div id="overlay">
+    <div class="form-popup" id="myForm">
+        <form action="delete_account.php" method="post" class="form-container">
+        <h1>Are you sure you want to delete your account?</h1>
+        <i>Your account will be permanently deleted!</i><hr>
+        <button type="submit">Yes</button>
+        <button type="button" onclick="closeForm()">No</button>
+        </form>
+    </div>
+    </div>
+
     <script>
-            document.getElementsByName("email")[0].value="<?php echo $item['email'];?>";
-            document.getElementsByName("firstname")[0].value="<?php echo $item['firstName'];?>";
-            document.getElementsByName("lastname")[0].value="<?php echo $item['lastName'];?>";
-            document.getElementsByName("phonenum")[0].value=<?php echo $item['phoneNumber'];?>;
+        document.getElementsByName("email")[0].value="<?php echo $item['email'];?>";
+        document.getElementsByName("firstname")[0].value="<?php echo $item['firstName'];?>";
+        document.getElementsByName("lastname")[0].value="<?php echo $item['lastName'];?>";
+        document.getElementsByName("phonenum")[0].value=<?php echo $item['phoneNumber'];?>;
+        if(<?php echo $item['subscribeStatus'];?> === 0) {
+                document.getElementsByName("subscribe")[0].checked=false;
+            }
+        else {
+                document.getElementsByName("subscribe")[0].checked=true;
+        }
+        function update() {
+            if(document.getElementsByName("subscribe")[0].checked === false) {
+                document.getElementsByName("subscribe")[0].value='no';
+            } else {
+                document.getElementsByName("subscribe")[0].value='yes';
+            }
+        }
+
+        function showWarning() {
+            document.getElementById("myForm").style.display = "inline-block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function closeForm() {
+            document.getElementById("myForm").style.display = "";
+            document.getElementById("overlay").style.display = "";
+        }
     </script>
 
 
-    
-
-    <!-- <div class="form-box">
-    <form action="addUserAction.php" method="post">
-        <div>
-            <h2 id="newAccountHeader">EDIT ACCOUNT</h2>
-        </div>
-        <div>
-            <label for="firstname">First name: </label><input class="registration" type="text" name="firstname" required><br>
-            <label for="lasttname">Last name: </label><input class="registration" type="text" name="lastname" required><br>
-        </div>
-        <div>
-            <label for="email">Email Address: </label><input class="registration" type="email" name="email" required><br>
-        </div>
-        <div>
-            <label for="date">Birth Date: </label>
-            <input type="date" name="date" id="date">
-        </div>
-        <div>
-            <label for="password">Password: </label><input class="registration" type="password" name="password" required><br>
-            <label for="password2">Confirm Password: </label><input class="registration" type="password" name="password2" required><br>
-        </div>
-        <div>
-            <label for="country">Country: </label><select class="registration" name="country">
-                <option value="select"><em>Select a Country</em></option>
-                <option value="US">United States of America</option>
-                <option value="Canada">Canada</option>
-            </select><br>
-        </div>
-        <div>
-            <label for="zipcode">Zipcode: </label><input class="registration" type="number" name="zipcode"><br>
-        </div>
-        <div>
-            <label for="city">City: </label><input class="registration" type="text" name="city" required><br>
-            <label for="state">State: </label><input class="registration" type="text" name="state" required><br>
-        </div>
-
-        <div>
-            <label for="address">Address: </label><input class="registration" type="text" name="address" required><br>
-        </div>
-
-
-        <div>
-            <label for="phone">Phone Number: </label><input class="registration" type="number" name="phone"><br><br>
-        </div>
-
-        <div>
-            <label class="container">Subscribe For Promotions and Latest News
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label><br>
-        </div>
-
-        <div>
-            <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account">
-            <hr>
-        </div>
-
-        <div>
-            <input class="registrationSubmit" type="submit" id="deleteAccount" value="DELETE ACCOUNT">
-        </div>
-    </form>
-    </div> -->
 
     <footer id='footer'>
         <p>&copy; TheBookStore</p>
