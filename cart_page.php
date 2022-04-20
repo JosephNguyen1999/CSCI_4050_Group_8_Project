@@ -73,6 +73,14 @@ $items = $conn->query($query);
         #cartTitle {
             text-align: center;
         }
+
+        h2, h4{
+            text-align: center;
+        }
+
+        body {
+            margin-bottom: 300px;
+        }
     </style>
 </head>
 
@@ -100,7 +108,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -112,7 +120,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -125,7 +133,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -138,7 +146,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -164,13 +172,13 @@ $items = $conn->query($query);
             <tbody>
                 <tr>
                     <td><img src="<?php echo $item['image'] ?>" height="150px" /></td>
-                    <td><a href="book_detail_page.html"><?php echo $item['name'] ?></a></td>
+                    <td><a href="book_detail_page.php"><?php echo $item['name'] ?></a></td>
                     <td><?php echo $item['author'] ?></td>
                     <td>
                         <p>$<?php echo $item['price'] ?></p>
                     </td>
                     <td><?php echo $item['cartQuantity'] ?></td>
-                    <td><?php echo $item['total'] ?></td>
+                    <td><?php echo round($item['total'], 2) ?></td>
                     <form action="deleteFromCart.php" method="post">
                         <td>
                             <input type="hidden" name="product_id" value="<?php echo $item['prodID']; ?>" />
@@ -182,15 +190,40 @@ $items = $conn->query($query);
         <?php } ?>
     </table>
 
+    <?php
+    $grandTotal = 0;
+    $roundedGrand = 0;
+    foreach ($items as $item) {
+        $total = $item['total'];
+        $grandTotal = $grandTotal + $total;
+        $roundedGrand = round($grandTotal, 2);
+    }
+    ?>
+
+    <h2><br>Grand Total: $<?php echo $roundedGrand; ?><br><br></h2>
+
+    <?php $_SESSION['grandTotal'] = $roundedGrand; ?>
+
+
     <div id="menu_div">
         <h3>Enter Promotion Code Below:</h3>
     </div>
-    <form action="checkout_page.html" method="post">
+    <div>
+        <form action="apply_promo.php" method="post">
+            <input class="verify" type="text" name="promoCode">
+            <button type="submit" class='promoApply' name="submit">Apply</button>
+            <br><br><br><br>
+        </form>
+    </div>
+    <form action="checkout_page.php" method="post">
         <div>
-            <input class="verify" type="text" name="promoCode"><br><br>
+            <button type="submit" class='proceedCheckout' name="proceedCheckout">Proceed to Online Checkout!</button>
         </div>
+    </form>
+    <h4>OR</h4>
+    <form action="reservation_page.php" method="post">
         <div>
-            <button type="submit" class='proceedCheckout' name="proceedCheckout">Proceed to Checkout!</button>
+            <button type="submit" class='proceedCheckout' name="proceedCheckout">Reserve Book(s)/Cash!</button>
         </div>
     </form>
 

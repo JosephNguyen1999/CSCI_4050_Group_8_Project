@@ -1,8 +1,8 @@
 <?php include_once('session_header.php');
 /**
-*if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
-*    header("Location: login_page.php");
-*} */
+ *if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
+ *    header("Location: login_page.php");
+ *} */
 
 $servername = "localhost";
 $username = "root";
@@ -39,35 +39,37 @@ $conn->close();
         #searchbar {
             margin: 50px 50px 50px;
         }
+
         .form-popup {
             margin: auto;
-            display:none;
+            display: none;
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 20px;
             width: 33%;
             position: fixed;
-            bottom:25%;
-            left:33%;
+            bottom: 25%;
+            left: 33%;
         }
-        input[type=text]{
+
+        input[type=text] {
             width: 100%;
             padding: 12px, 20px;
             margin: 8px, 0;
             display: inline-block;
         }
+
         #overlay {
-            position:fixed;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            display:none;
-            background-color: rgba(0,0,0,0.5);
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
         }
-
     </style>
 
 </head>
@@ -98,7 +100,7 @@ $conn->close();
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -110,7 +112,7 @@ $conn->close();
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -123,7 +125,7 @@ $conn->close();
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -136,7 +138,7 @@ $conn->close();
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -162,59 +164,67 @@ $conn->close();
 
     <!--DISPLAY USERS DYNAMICALLY-->
     <table id="myTable" class="table table-hover">
-            <thead>
-                <tr>
+        <thead>
+            <tr>
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Edit</th>
-                </tr>
-            </thead>
-            <?php foreach ($items as $item) { ?>
-                <tbody>
-                    <tr>
-                        <td> <p><?php echo $item['userID']?></p> </td>
-                        <td> <p><?php echo $item['firstName']?></p> </td>
-                        <td> <p><?php echo $item['lastName']?></p> </td>
-                        <td> <p><?php echo $item['email']?></p> </td>
-                        
-                        <td><button class="open-button" onclick="openForm(
-                            '<?php echo $item['firstName']?>',
-                            '<?php echo $item['lastName']?>',
-                            '<?php echo $item['email']?>',
-                            '<?php echo $item['userID']?>'
+            </tr>
+        </thead>
+        <?php foreach ($items as $item) { ?>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><?php echo $item['userID'] ?></p>
+                    </td>
+                    <td>
+                        <p><?php echo $item['firstName'] ?></p>
+                    </td>
+                    <td>
+                        <p><?php echo $item['lastName'] ?></p>
+                    </td>
+                    <td>
+                        <p><?php echo $item['email'] ?></p>
+                    </td>
+
+                    <td><button class="open-button" onclick="openForm(
+                            '<?php echo $item['firstName'] ?>',
+                            '<?php echo $item['lastName'] ?>',
+                            '<?php echo $item['email'] ?>',
+                            '<?php echo $item['userID'] ?>'
                             )">Edit</button>
-                        </td>
-                    </tr>
-                </tbody>
-            <?php } ?>
+                    </td>
+                </tr>
+            </tbody>
+        <?php } ?>
     </table>
 
     <!--Popup form for admin to edit user info-->
     <div id="overlay">
-    <div class="form-popup" id="myForm">
-        <form action="manage_member_action.php" method="post" class="form-container">
-        <h1>Manage User</h1>
+        <div class="form-popup" id="myForm">
+            <form action="manage_member_action.php" method="post" class="form-container">
+                <h1>Manage User</h1>
 
-        <label for="first">First Name</label>
-        <input type="text" placeholder="Enter Password" name="first" value="" required><br>
+                <label for="first">First Name</label>
+                <input type="text" placeholder="Enter Password" name="first" value="" required><br>
 
-        <label for="last">Last Name</label>
-        <input type="text" placeholder="Enter Password" name="last" value="" required><br>
+                <label for="last">Last Name</label>
+                <input type="text" placeholder="Enter Password" name="last" value="" required><br>
 
-        <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" value="" required><br>
+                <label for="email">Email</label>
+                <input type="text" placeholder="Enter Email" name="email" value="" required><br>
 
-        <i>Changes made to this form will modify this users account.</i><br>
+                <i>Changes made to this form will modify this users account.</i><br>
 
-        <button type="submit">Modify</button>
+                <button type="submit">Modify</button>
 
-        <input type="hidden" name="uid">
+                <input type="hidden" name="uid">
 
-        <button type="button" onclick="closeForm()">Close</button>
-        </form>
-    </div>
+                <button type="button" onclick="closeForm()">Close</button>
+            </form>
+        </div>
     </div>
 
     <!--Open and close scripts-->
@@ -223,12 +233,13 @@ $conn->close();
             document.getElementById("myForm").style.display = "inline-block";
             document.getElementById("overlay").style.display = "block";
 
-            document.getElementsByName("first")[0].value=firstN;
-            document.getElementsByName("last")[0].value=lastN;
-            document.getElementsByName("email")[0].value=email;
-            document.getElementsByName("uid")[0].value=userid;
+            document.getElementsByName("first")[0].value = firstN;
+            document.getElementsByName("last")[0].value = lastN;
+            document.getElementsByName("email")[0].value = email;
+            document.getElementsByName("uid")[0].value = userid;
 
         }
+
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
             document.getElementById("overlay").style.display = "none";

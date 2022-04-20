@@ -22,10 +22,11 @@
         $quantity = $_POST['quantity'];
 
         $total = $productPrice * $quantity;
+        $roundedTotal = round($total, 2);
 
         $userID = $_SESSION['userID'];
 
-        $insertProduct = "INSERT INTO cart (userID, cartQuantity, uniqueID, total) VALUES ('$userID', '$quantity', '$productID', '$total');";
+        $insertProduct = "INSERT INTO cart (userID, cartQuantity, uniqueID, total) VALUES ('$userID', '$quantity', '$productID', '$roundedTotal');";
         mysqli_query($conn, $insertProduct);
 
         $updateProduct = "UPDATE products SET quantity = quantity - '$quantity' WHERE prodID = '$productID';";

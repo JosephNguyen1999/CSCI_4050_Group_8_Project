@@ -65,7 +65,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -77,7 +77,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -90,7 +90,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -103,7 +103,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>

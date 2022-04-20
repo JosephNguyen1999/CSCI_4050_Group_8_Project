@@ -219,7 +219,7 @@ $items = $conn->query($query);
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="online_checkout.php" method="post">
+                <form action="reservation_cash.php" method="post">
 
                     <div class="row">
                         <div class="col-50">
@@ -236,46 +236,20 @@ $items = $conn->query($query);
                             </div>
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
                             <input type="text" id="email" name="email" placeholder="john@example.com" required>
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
-                            <label for="city"><i class="fa fa-institution"></i> City</label>
-                            <input type="text" id="city" name="city" placeholder="New York" required>
 
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="NY" required>
-                                </div>
-                                <div class="col-50">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001" required>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="col-50">
-                            <h3>Payment</h3>
-                            <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
-                            <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required>
-                            <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="September" required>
+                            <h3>Pickup Information</h3>
+                            <label for="cname">Store Address: 111 UGA Way, Athens, GA 30605</label>
+                            <label for="cname">Store Hours: 8 am to 5 pm EST</label>
+                            <label for="cname">Books will be reserved for 5 days!</label>
 
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018" required>
-                                </div>
-                                <div class="col-50">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352" required>
-                                </div>
-                            </div>
+                            <label for="cname">All forms of payment in store will be accepted!</label>
                         </div>
 
                     </div>
-                    <input type="submit" name="submit" value="Online Checkout" class="btn">
+                    <input type="submit" name="submit" value="Reserve In Store/Cash" class="btn">
                 </form>
             </div>
         </div>

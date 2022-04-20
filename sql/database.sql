@@ -49,6 +49,7 @@ CREATE TABLE `orders` (
   `paymentStatus` varchar(256) NOT NULL,
   `grandTotal` double,
   `userID` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
   `address` varchar(256) NOT NULL,
   `orderType` varchar(256) NOT NULL,
   `orderDate` varchar(256) NOT NULL
@@ -62,9 +63,12 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `cartHistory` (
   `cartHID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
   `orderID` int(11) NOT NULL,
   `prodID` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `orderDate` varchar(256) NOT NULL,
+  `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -90,12 +94,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`) VALUES
-(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 9780136061250, 'Education', 116.25, 'Computer Science', 'Book', 10, 'images/0136061257.jpg'),
+(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 9780136061250, 'Computer Science', 116.25, 'Education', 'Book', 10, 'images/0136061257.jpg'),
 (2, 'Warriors #1: Into the Wild', 'Erin Hunter', 9780062366962, 'Warrior #1', 7.99, 'Fiction', 'Book', 7, 'images/warrior1.jpg'),
 (3, 'Warriors #2: Fire and Ice', 'Erin Hunter', 9780060000035, 'Warrior #2', 6.99, 'Fiction', 'Book', 8, 'images/warrior2.jpg'),
 (4, 'Warriors #3: Forest of Secrets', 'Erin Hunter', 9780062366986, 'Warrior #3', 5.99, 'Fiction', 'Book', 9, 'images/warrior3.jpg'),
 (5, 'Warriors #4: Rising Storm', 'Erin Hunter', 9780060525620, 'Warrior #4', 4.99, 'Fiction', 'Book', 11, 'images/warrior4.jpg'),
-(6, 'Warriors #5: A Dangerous Path', 'Erin Hunter', 9780060000066, 'Warrior #5', 8.99, 'Fiction', 'Book', 3, 'images/warrior5.jpg');
+(6, 'Warriors #5: A Dangerous Path', 'Erin Hunter', 9780060000066, 'Warrior #5', 8.99, 'Fiction', 'Book', 1, 'images/warrior5.jpg');
 
 -- --------------------------------------------------------
 
@@ -166,7 +170,7 @@ CREATE TABLE `paymentInfo` (
 CREATE TABLE `promoCodes` (
   `promoID` int(11) NOT NULL,
   `promoCode` varchar(256) NOT NULL,
-  `promoNumber` int(11) NOT NULL
+  `promoNumber` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

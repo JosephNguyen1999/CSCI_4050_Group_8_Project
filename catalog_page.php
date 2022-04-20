@@ -111,7 +111,7 @@ $_SESSION['pageID'] = 1;
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -123,7 +123,7 @@ $_SESSION['pageID'] = 1;
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -136,7 +136,7 @@ $_SESSION['pageID'] = 1;
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -149,7 +149,7 @@ $_SESSION['pageID'] = 1;
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+            
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -181,8 +181,10 @@ $_SESSION['pageID'] = 1;
             <thead>
                 <tr>
                     <th></th>
+                    <th>ISBN</th>
                     <th>Title</th>
                     <th>Author</th>
+                    <th>Subject</th>
                     <th>Price</th>
                 </tr>
             </thead>
@@ -190,8 +192,10 @@ $_SESSION['pageID'] = 1;
                 <tbody>
                     <tr>
                         <td><img src="<?php echo $item['image'] ?>" height="150px" /></td>
+                        <td><?php echo $item['ISBN'] ?></td>
                         <td><a href="book_detail_page.php"><?php echo $item['name'] ?></a></td>
                         <td><?php echo $item['author'] ?></td>
+                        <td><?php echo $item['genre'] ?></td>
                         <td>
                             <p>$<?php echo $item['price'] ?></p>
                         </td>
@@ -204,8 +208,10 @@ $_SESSION['pageID'] = 1;
             <thead>
                 <tr>
                     <th></th>
+                    <th>ISBN</th>
                     <th>Title</th>
                     <th>Author</th>
+                    <th>Subject</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Add to Cart</th>
@@ -215,8 +221,10 @@ $_SESSION['pageID'] = 1;
                 <tbody>
                     <tr>
                         <td><img src="<?php echo $item['image'] ?>" height="150px" /></td>
+                        <td><?php echo $item['ISBN'] ?></td>
                         <td><a href="book_detail_page.php"><?php echo $item['name'] ?></a></td>
                         <td><?php echo $item['author'] ?></td>
+                        <td><?php echo $item['genre'] ?></td>
                         <td>
                             <p>$<?php echo $item['price'] ?></p>
                         </td>

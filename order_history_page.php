@@ -3,6 +3,25 @@
 if ($_SESSION['loginst'] == 0) {
     header("Location: login_page.php");
 }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booksDatabase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$userID = $_SESSION['userID'];
+
+$query2 = "SELECT orderID, orderDate, orders.grandTotal FROM orders WHERE userID = $userID";
+$orders = $conn->query($query2);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +63,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a class="active" href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -56,7 +75,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a class="active" href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -69,7 +88,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a class="active" href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -82,7 +101,7 @@ if ($_SESSION['loginst'] == 0) {
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a href="cart_page.php">Cart</a></li>
-            <li><a href="checkout_page.php">Checkout</a></li>
+
             <li><a class="active" href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -93,20 +112,62 @@ if ($_SESSION['loginst'] == 0) {
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Book</th>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Date</th>
+                <th>Grand Total</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td><a href="book_detail_page.html">Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition, Bernd Bruegge, Allen H. Dutoit</a></td>
-                <td>1</td>
-                <td>$116.25</td>
-                <td>3/24/2022</td>
-            </tr>
-        </tbody>
+        <?php
+        foreach ($orders as $order) {
+            $orderID = $order['orderID'];
+            $query = "SELECT name, cartHistory.quantity, total, orderDate FROM cartHistory JOIN products ON cartHistory.prodID = products.prodID WHERE cartHistory.userID = $userID AND orderID = $orderID";
+            $items = $conn->query($query);
+        ?>
+            <tbody>
+                <tr>
+                    <td><?php echo $order['orderID']; ?></td>
+                    <td>
+                        <?php
+                        echo $order['orderDate'];
+                        ?>
+                    </td>
+                    <td><a href="book_detail_page.php">
+                            <?php
+                            foreach ($items as $item) {
+                                echo $item['name'];
+                                echo "<br>";
+                            }
+                            ?>
+                        </a></td>
+                    <td>
+                        <?php
+                        foreach ($items as $item) {
+                            echo $item['quantity'];
+                            echo "<br>";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($items as $item) {
+                            echo "$";
+                            echo $item['total'];
+                            echo "<br>";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        echo "$";
+                        echo $order['grandTotal'];
+                        ?>
+                    </td>
+                </tr>
+            </tbody>
+        <?php } ?>
     </table>
 
 
