@@ -30,6 +30,7 @@
         $last = $_POST["lastname"] ?? '';
 		$email = $_POST["email"] ?? '';
         $phone = $_POST["phone"] ?? '';
+		$storeCode = $_POST['storeCode'] ?? '';
         
 	} else {
 		include('registration_page.php');
@@ -45,8 +46,8 @@
 	
 	if(!empty($_POST["username"]) or !empty($_POST["password"]))
 	{
-		$sql = "INSERT INTO users (userType, firstName, lastName, username, password, email, phoneNumber, verificationCode, verificationStatus) 
-        VALUES ('user', '$first', '$last', '$user', '$pass', '$email', '$phone', '1', 'true')";
+		$sql = "INSERT INTO users (userType, firstName, lastName, username, password, email, phoneNumber, verificationCode, verificationStatus, subscribeStatus) 
+        VALUES ('user', '$first', '$last', '$user', '$pass', '$email', '$phone', '$storeCode', 'true', 0)";
 		
 		if(mysqli_query($conn, $sql)){
 			echo "Account Successfully Created!";

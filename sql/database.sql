@@ -53,7 +53,7 @@ CREATE TABLE `orders` (
   `address` varchar(256) NOT NULL,
   `orderType` varchar(256) NOT NULL,
   `orderDate` varchar(256) NOT NULL,
-  `confirmationNumber` int(11) NOT NULL
+  `confirmationCode` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -87,20 +87,21 @@ CREATE TABLE `products` (
   `genre` varchar(256) NOT NULL,
   `category` varchar(256) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `image` varchar(512) NOT NULL
+  `image` varchar(512) NOT NULL,
+  `publisher` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`) VALUES
-(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 9780136061250, 'Computer Science', 116.25, 'Education', 'Book', 10, 'images/0136061257.jpg'),
-(2, 'Warriors #1: Into the Wild', 'Erin Hunter', 9780062366962, 'Warrior #1', 7.99, 'Fiction', 'Book', 7, 'images/warrior1.jpg'),
-(3, 'Warriors #2: Fire and Ice', 'Erin Hunter', 9780060000035, 'Warrior #2', 6.99, 'Fiction', 'Book', 8, 'images/warrior2.jpg'),
-(4, 'Warriors #3: Forest of Secrets', 'Erin Hunter', 9780062366986, 'Warrior #3', 5.99, 'Fiction', 'Book', 9, 'images/warrior3.jpg'),
-(5, 'Warriors #4: Rising Storm', 'Erin Hunter', 9780060525620, 'Warrior #4', 4.99, 'Fiction', 'Book', 11, 'images/warrior4.jpg'),
-(6, 'Warriors #5: A Dangerous Path', 'Erin Hunter', 9780060000066, 'Warrior #5', 8.99, 'Fiction', 'Book', 1, 'images/warrior5.jpg');
+INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`, `userID`) VALUES
+(1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 9780136061250, 'Computer Science', 116.25, 'Education', 'Book', 10, 'images/0136061257.jpg', 3),
+(2, 'Warriors #1: Into the Wild', 'Erin Hunter', 9780062366962, 'Warrior #1', 7.99, 'Fiction', 'Book', 7, 'images/warrior1.jpg', 3),
+(3, 'Warriors #2: Fire and Ice', 'Erin Hunter', 9780060000035, 'Warrior #2', 6.99, 'Fiction', 'Book', 8, 'images/warrior2.jpg', 3),
+(4, 'Warriors #3: Forest of Secrets', 'Erin Hunter', 9780062366986, 'Warrior #3', 5.99, 'Fiction', 'Book', 9, 'images/warrior3.jpg', 1),
+(5, 'Warriors #4: Rising Storm', 'Erin Hunter', 9780060525620, 'Warrior #4', 4.99, 'Fiction', 'Book', 11, 'images/warrior4.jpg', 1),
+(6, 'Warriors #5: A Dangerous Path', 'Erin Hunter', 9780060000066, 'Warrior #5', 8.99, 'Fiction', 'Book', 1, 'images/warrior5.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,7 @@ CREATE TABLE `users` (
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `phoneNumber` varchar(11) NOT NULL,
-  `verificationCode` int(11) NOT NULL,
+  `verificationCode` varchar(256) NOT NULL,
   `verificationStatus` varchar(256) NOT NULL,
   `subscribeStatus` int(11) NOT NULL,
   `birthDate` varchar(256) NOT NULL,
@@ -128,11 +129,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, `password`, `email`, `phoneNumber`, `verificationCode`, `verificationStatus`, `subscribeStatus`) VALUES
-(1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true', 0),
-(2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true', 0),
-(3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true', 0),
-(4, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true', 0);
+INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, `password`, `email`, `phoneNumber`, `verificationCode`, `verificationStatus`, `subscribeStatus`, `birthDate`, `address`) VALUES
+(1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true', 0, '07/31/1999', '111 Hello Way'),
+(2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true', 0, '07/31/1999', '111 Hello Way'),
+(3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true', 0, '07/31/1999', '111 Hello Way'),
+(4, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true', 0, '07/31/1999', '111 Hello Way');
 
 
 -- --------------------------------------------------------

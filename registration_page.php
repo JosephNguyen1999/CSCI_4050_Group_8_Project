@@ -1,4 +1,19 @@
-<?php include_once('session_header.php'); ?>
+<?php 
+include_once('session_header.php'); 
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booksDatabase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+?>
 
 <html lang="en">
 
@@ -45,14 +60,22 @@
       		//need to generate code
 			//put the code in the database
 			var val = document.getElementById("email").value;
+			var code = (Math.random() + 1).toString(36).substring(7);
+			document.cookie="code=" + code;
+			<?php 
+			$storeCode = $_COOKIE['code'];
+			?>
+			var test = "<html><h2>Well that was easy!!</h2><p>" + code + "</p><h2><a href='http://localhost/CSCI_4050_Group_8_Project/verification_page.php'>Visit W3Schools.com!</a></h2></html>";
 			Email.send({
         	Host: "smtp.gmail.com",
-        	Username: "sender@email_address.com",
-        	Password: "Enter your password",
+        	Username: "thebookstore99@gmail.com",
+        	Password: "thebookstore99",
         	To: val,
-        	From: "sender@email_address.com",
+			// To: "josephnguyen902@gmail.com",
+        	From: "thebookstore99@gmail.com",
         	Subject: "Sending Email using javascript",
-        	Body: "Well that was easy!!",
+        	Body: test,
+			
       	})
         .then(function (message) {
           alert("mail sent successfully")
@@ -65,7 +88,6 @@
 
 
 <body>
-
 	<div id="header">
 
 		<img src="./images/headpugnobg.jpg" alt="pugbook" width="250" height="140">
@@ -188,7 +210,8 @@
 			</div>
 
 			<div>
-				<input class="registrationSubmit" type="submit" name="createAccount" id="createAccount" value="Create Account">
+				<input type="hidden" name="storeCode" value="<?php echo $storeCode; ?>" />
+				<input class="registrationSubmit" type="submit" name="createAccount" id="createAccount" value="Create Account" onclick="sendEmail()">
 			</div>
 
 
