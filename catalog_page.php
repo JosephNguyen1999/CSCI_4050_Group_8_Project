@@ -57,9 +57,12 @@ $_SESSION['pageID'] = 1;
             // Filter by selected (Title or Author)
             selected = document.getElementById("filBy");
             strSelected = selected.options[selected.selectedIndex].text;
-            a = 1;
-            if (strSelected === "Title") a = 1;
-            if (strSelected === "Author") a = 2;
+            a = 2;
+            if (strSelected === "ISBN") a = 1;
+            if (strSelected === "Title") a = 2;
+            if (strSelected === "Author") a = 3;
+            if (strSelected === "Subject") a = 4;
+
 
             // Loop through all table rows, and hide those who don't match the search query
             for (i = 0; i < tr.length; i++) {

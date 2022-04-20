@@ -15,13 +15,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT orders.orderID, orders.userID, orders.grandTotal, orders.quantity, orders.orderDate,
-    users.email,
-    products.name
+$query = "SELECT orders.orderID, orders.userID, orders.grandTotal, orders.orderDate,
+    users.email, users.phoneNumber
 
     FROM orders
-    INNER JOIN users ON orders.userID = users.userID
-    INNER JOIN products ON orders.prodID = products.prodID;";
+    INNER JOIN users ON orders.userID = users.userID;";
 
 $items = $conn->query($query);
 
@@ -153,53 +151,25 @@ $conn->close();
 
     <div class="text-center">
         <form id="searchbar" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" id="myInput" onkeyup="myFunction() " placeholder="Search.." name="search">
             <button type="submit">Search</button>
-            <select class="category" name="category">
-                <option value="id">ID</option>
+            <select id="filBy" class="category" name="category">
+                <option value="id">Order ID</option>
                 <option value="email">Email</option>
             </select><br>
         </form>
     </div>
 
-
-
-
-    <!--
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Products</th>
-                <th>Grand Total</th>
-                <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>hello@uga.edu</td>
-                <td>111 UGA Street</td>
-                <td>Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition</td>
-                <td>$116.25</td>
-                <td><button type="button" class='edit' name="edit">Edit</button></td>
-            </tr>
-        </tbody>
-    </table>
-    -->
     
     <!--requires query to get from db-->
     <!--query needs orders and inner join on users and products-->
-    <table class="table table-hover">
+    <table id="myTable" class="table table-hover">
             <thead>
                 <tr>
                 <th>Order ID</th>
                 <th>User ID</th>
                 <th>Email</th>
-                <th>Products</th>
-                <th>Quantity</th>
+                <th>Phone Number</th>
                 <th>Grand Total</th>
                 <th>Order Date</th>
                 <th>Edit</th>
@@ -211,13 +181,11 @@ $conn->close();
                         <td> <p><?php echo $item['orderID']?></p> </td> <!--from orders-->
                         <td> <p><?php echo $item['userID']?></p> </td> <!--from orders-->
                         <td> <p><?php echo $item['email']?></p> </td> <!--from users-->
-                        <td> <p><?php echo $item['name']?></p> </td> <!--from products-->
-                        <td> <p><?php echo $item['quantity']?></p> </td> <!--from orders-->
+                        <td> <p><?php echo $item['phoneNumber']?></p> </td> <!--from users-->
                         <td> <p><?php echo $item['grandTotal']?></p> </td> <!--from orders-->
                         <td> <p><?php echo $item['orderDate']?></p> </td> <!--from orders-->
                         
                         <td><button class="open-button" onclick="openForm(
-                            '<?php echo $item['quantity']?>',
                             '<?php echo $item['grandTotal']?>',
                             '<?php echo $item['orderDate']?>',
                             '<?php echo $item['orderID']?>'
@@ -231,23 +199,20 @@ $conn->close();
     <!--Popup form for admin to edit order info-->
     <div id="overlay">
     <div class="form-popup" id="myForm">
-        <form action="manage_order_action.php" method="post" class="form-container"> <!--need to create action page-->
+        <form action="manage_order_action.php" method="post" class="form-container">
         <h1>Manage Order</h1>
-
-        <label for="quant">Quantity</label>
-        <input type="number" name="quant" value="" required><br>
 
         <label for="total">Grand Total</label>
         <input type="number"  name="total" min="1" step="any" value="" required><br>
 
-        <label for="date">Date</label>
+        <label for="date">Order Date</label>
         <input type="text"  name="date" value="" required><br>
 
-        <i>Changes made to this form will modify order history.</i><br>
+        <i>Changes made to this form will modify order history.</i><hr>
 
         <button type="submit">Modify</button>
 
-        <input type="hidden" name="prodID">
+        <input type="hidden" name="oID">
 
         <button type="button" onclick="closeForm()">Close</button>
         </form>
@@ -256,19 +221,48 @@ $conn->close();
 
     <!--Open and close scripts-->
     <script>
-        function openForm(quantity, gtotal, odate, prodid) {
+        function openForm(gtotal, odate, oid) {
             document.getElementById("myForm").style.display = "inline-block";
             document.getElementById("overlay").style.display = "block";
 
-            document.getElementsByName("quant")[0].value=quantity;
             document.getElementsByName("total")[0].value=gtotal;
             document.getElementsByName("date")[0].value=odate;
-            document.getElementsByName("prodID")[0].value=prodid;
+            document.getElementsByName("oID")[0].value=oid;
 
         }
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
             document.getElementById("overlay").style.display = "none";
+        }
+
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, th, i, txtValue, selected, strSelected, a;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Filter by selected (Title or Author)
+            selected = document.getElementById("filBy");
+            strSelected = selected.options[selected.selectedIndex].text;
+            a = 0;
+            if (strSelected === "Order ID") a = 0;
+            if (strSelected === "Email") a = 2;
+
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[a];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
         }
     </script>
 
