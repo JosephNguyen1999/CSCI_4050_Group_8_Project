@@ -37,6 +37,17 @@ $conn->close();
     <link rel="stylesheet" href="styles/styles.css">
 
     <style>
+        #overlay {
+            position:fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display:none;
+            background-color: rgba(0,0,0,0.5);
+        }
         .form-box {
             margin: auto;
             display:block;
@@ -45,6 +56,17 @@ $conn->close();
             padding: 20px;
             width: 50%;
             left:25%;
+        }
+        .form-popup {
+            margin: auto;
+            display:none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 33%;
+            position: fixed;
+            bottom:25%;
+            left:33%;
         }
         input[type=text], input[type=number]{
             width: 100%;
@@ -179,9 +201,20 @@ $conn->close();
         <hr>
 
         <input class="registrationSubmit" type="submit" id="createAccount" value="Update Account" onclick="update()">
-        <input class="registrationSubmit" type="submit" id="deleteAccount" formaction="delete_account.php" value="DELETE ACCOUNT">
+        <input class="registrationSubmit" type="button" id="deleteAccount" value="DELETE ACCOUNT" onclick="showWarning()">
     </form>
     <br>
+    </div>
+
+    <div id="overlay">
+    <div class="form-popup" id="myForm">
+        <form action="delete_account.php" method="post" class="form-container">
+        <h1>Are you sure you want to delete your account?</h1>
+        <i>Your account will be permanently deleted!</i><hr>
+        <button type="submit">Yes</button>
+        <button type="button" onclick="closeForm()">No</button>
+        </form>
+    </div>
     </div>
 
     <script>
@@ -201,6 +234,15 @@ $conn->close();
             } else {
                 document.getElementsByName("subscribe")[0].value='yes';
             }
+        }
+
+        function showWarning() {
+            document.getElementById("myForm").style.display = "inline-block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function closeForm() {
+            document.getElementById("myForm").style.display = "";
+            document.getElementById("overlay").style.display = "";
         }
     </script>
 
