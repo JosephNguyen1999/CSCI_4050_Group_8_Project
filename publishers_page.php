@@ -277,32 +277,23 @@ $conn->close();
         <div class="form-popup" id="myForm">
             <form action="pub_action.php" method="post" class="form-container"> <!--Change action-->
                 <h1>Manage Books</h1>
-
                 <label for="title">Title</label>
                 <input type="text"  name="title" value="" required><br>
-
                 <label for="genre">Genre</label>
                 <input type="text"  name="genre" value="" required><br>
-
                 <label for="isbn">ISBN</label>
                 <input type="text"  name="isbn" value="" required><br>
-
                 <label for="author">Author</label>
                 <input type="text"  name="author" value="" required><br>
-
                 <label for="quantity">Quantity</label>
                 <input type="text" name="quantity" value="" required><br>
-
                 <label for="price">Price</label>
                 <input type="text" name="price" value="14" required><br>
-
                 <i>Changes made to this form will modify this book.</i><br>
-
                 <button type="submit">Modify</button>
-
                 <input type="hidden" id="hid" name="proid" value="99">
-
                 <button type="button" onclick="closeForm()">Close</button>
+                <button type="submit" formaction="delete_book.php">DELETE BOOK</button>
             </form>
         </div>
     </div>
@@ -312,12 +303,12 @@ $conn->close();
             document.getElementById("myForm").style.display = "inline-block";
             document.getElementById("overlay").style.display = "block";
 
-            document.getElementsByName("title")[0].value = title;
-            document.getElementsByName("genre")[0].value = genre;
-            document.getElementsByName("isbn")[0].value = isbn;
-            document.getElementsByName("author")[0].value = author;
-            document.getElementsByName("quantity")[0].value = quantity;
-            document.getElementsByName("price")[0].value = price;
+            document.getElementsByName("title")[1].value = title;
+            document.getElementsByName("genre")[1].value = genre;
+            document.getElementsByName("isbn")[1].value = isbn;
+            document.getElementsByName("author")[1].value = author;
+            document.getElementsByName("quantity")[1].value = quantity;
+            document.getElementsByName("price")[1].value = price;
             document.getElementsByName("proid")[0].value = prodid;
         }
 
