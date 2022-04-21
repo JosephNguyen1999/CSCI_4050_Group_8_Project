@@ -28,7 +28,7 @@ $query = "INSERT INTO `products`
     VALUES ('$titl','$auth',
         $isbn,'$desc',$pric,
         '$genr','Book',$quant,
-        'images/warrior5.jpg',$usid)";
+        'images/missing.png',$usid)";
 
 
 echo $titl . " " . $auth . " " . $isbn . " " . $desc . " " . $genr . " " . $quant . " " . $pric . " " . $usid . " " . $img; //debug
