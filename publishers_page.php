@@ -71,6 +71,52 @@ $conn->close();
             display: none;
             background-color: rgba(0, 0, 0, 0.5);
         }
+        .plus {
+            --t:2px;   /* Thickness */
+            --l:40px;  /* size of the symbol */
+            --s:10px;  /* space around the symbol */
+            --c1:#fff; /* Plus color*/
+            --c2:#000; /* background color*/
+
+            float: right;
+            width:var(--l);
+            height:var(--l);
+            padding:var(--s);
+            box-sizing:border-box; /*Remove this if you don't want space to be included in the size*/
+            
+            background:
+                linear-gradient(var(--c1) 0 0) content-box,
+                linear-gradient(var(--c1) 0 0) content-box,
+                var(--c2);
+            background-position:center;
+            background-size: 100% var(--t),var(--t) 100%;
+            background-repeat:no-repeat;
+            }
+
+        .radius {
+            border-radius:50%;
+         }
+        .w80 {
+            width: 80%;
+            float: right;
+        }
+        .w20 {
+            width: 19%;
+            float:left;
+            padding-right: 2px;
+        }
+        .form-box {
+            margin: auto;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            left:25%;
+        }
+        input[type=text], input[type=number]{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px, 0;
+        }
     </style>
 </head>
 
@@ -161,8 +207,36 @@ $conn->close();
             </select><br>
         </form>
     </div>
+    
+    <div class="w20 form-box"> 
+        <h1>Add new book</h1>
+        <form action="add_book.php" method="post" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input name="title" type="text" required>
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" required>
+            <label for="isbn">ISBN:</label>
+            <input type="number" name="isbn" required>
+            <label for="description">Book description:</label>
+            <input type="text" name="description" required>
+            <label for="genre">Genre:</label>
+            <input type="text" name="genre" required>
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" required>
+            <label for="image">Cover image:</label>
+            <input type="file" name="fileToUpload" id="fileToUpload"><hr>
+            <input type="hidden" name="userID" id="userID" value="<?php echo $_SESSION['userID'];?>">
+            <div class="plus radius" style="--l:35px;--t:3px;--c2:green">
+                <button><input type="submit" name="submit"></button>
+            </div>
+        </form>
+        
+    </div>
+    
 
-    <table id="myTable" class="table table-hover">
+    <table id="myTable" class="table table-hover w80 form-box">
             <thead>
                 <tr>
                 <th>Title</th>
@@ -198,7 +272,7 @@ $conn->close();
                 </tbody>
             <?php } ?>
     </table>
-
+    
     <div id="overlay">
         <div class="form-popup" id="myForm">
             <form action="pub_action.php" method="post" class="form-container"> <!--Change action-->
