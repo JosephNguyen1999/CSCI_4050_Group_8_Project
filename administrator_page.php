@@ -95,6 +95,9 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
         <form action="manage_orders.php" method="post">
             <button type="submit" class='menu_items_button' name="books">Manage Orders</button>
         </form>
+        <form action="publishers_page.php" method="post">
+            <button type="submit" class='menu_items_button' name="books">Manage Books</button>
+        </form>
     </div>
     <footer id='footer'>
         <p>&copy; TheBookStore</p>

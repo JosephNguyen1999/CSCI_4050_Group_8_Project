@@ -1,6 +1,6 @@
 <?php include_once('session_header.php');
 
-if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'publisher') {
+if ($_SESSION['loginst'] == 0 && ($_SESSION['userType'] != 'publisher' || $_SESSION['userType'] != 'admin')) {
     header("Location: login_page.php");
 }
 
@@ -16,7 +16,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM `products` WHERE userID=$_SESSION[userID]";
+$subquery = "";
+if($_SESSION['userType'] == 'publisher') $subquery = " WHERE userID=$_SESSION[userID]";
+
+$query = "SELECT * FROM `products`" . $subquery;
 
 $items = $conn->query($query);
 $conn->close();
