@@ -16,9 +16,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "";
+$query = "SELECT * FROM `products` WHERE userID=$_SESSION[userID]";
 
-$conn->query($query);
+$items = $conn->query($query);
 $conn->close();
 ?>
 
@@ -38,6 +38,35 @@ $conn->close();
     <style>
         #searchbar {
             margin: 50px 50px 50px;
+        }
+        .form-popup {
+            margin: auto;
+            display: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 33%;
+            position: fixed;
+            bottom: 25%;
+            left: 33%;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px, 0;
+            display: inline-block;
+        }
+
+        #overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -145,23 +174,81 @@ $conn->close();
             <?php foreach ($items as $item) { ?>
                 <tbody>
                     <tr>
-                        <td> <p><?php echo $item['orderID']?></p> </td> 
-                        <td> <p><?php echo $item['userID']?></p> </td> 
-                        <td> <p><?php echo $item['email']?></p> </td> 
-                        <td> <p><?php echo $item['phoneNumber']?></p> </td>
-                        <td> <p><?php echo $item['grandTotal']?></p> </td> 
-                        <td> <p><?php echo $item['orderDate']?></p> </td>
-                        
+                        <td> <p><?php echo $item['name']?></p> </td> 
+                        <td> <p><?php echo $item['genre']?></p> </td> 
+                        <td> <p><?php echo $item['ISBN']?></p> </td> 
+                        <td> <p><?php echo $item['author']?></p> </td>
+                        <td> <p><?php echo $item['quantity']?></p> </td> 
+                        <td> <p><?php echo $item['price']?></p> </td> 
+
                         <td><button class="open-button" onclick="openForm(
-                            '<?php echo $item['grandTotal']?>',
-                            '<?php echo $item['orderDate']?>',
-                            '<?php echo $item['orderID']?>'
+                            '<?php echo $item['name']?>',
+                            '<?php echo $item['genre']?>',
+                            '<?php echo $item['ISBN']?>',
+                            '<?php echo $item['author']?>',
+                            '<?php echo $item['quantity']?>',
+                            '<?php echo $item['price']?>',
+                            '<?php echo $item['prodID']?>'
                             )">Edit</button>
                         </td>
                     </tr>
                 </tbody>
             <?php } ?>
     </table>
+
+    <div id="overlay">
+        <div class="form-popup" id="myForm">
+            <form action="pub_action.php" method="post" class="form-container"> <!--Change action-->
+                <h1>Manage Books</h1>
+
+                <label for="title">Title</label>
+                <input type="text"  name="title" value="" required><br>
+
+                <label for="genre">Genre</label>
+                <input type="text"  name="genre" value="" required><br>
+
+                <label for="isbn">ISBN</label>
+                <input type="text"  name="isbn" value="" required><br>
+
+                <label for="author">Author</label>
+                <input type="text"  name="author" value="" required><br>
+
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" value="" required><br>
+
+                <label for="price">Price</label>
+                <input type="text" name="price" value="14" required><br>
+
+                <i>Changes made to this form will modify this book.</i><br>
+
+                <button type="submit">Modify</button>
+
+                <input type="hidden" id="hid" name="proid" value="99">
+
+                <button type="button" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openForm(title,genre,isbn,author,quantity,price,prodid) {
+            document.getElementById("myForm").style.display = "inline-block";
+            document.getElementById("overlay").style.display = "block";
+
+            document.getElementsByName("title")[0].value = title;
+            document.getElementsByName("genre")[0].value = genre;
+            document.getElementsByName("isbn")[0].value = isbn;
+            document.getElementsByName("author")[0].value = author;
+            document.getElementsByName("quantity")[0].value = quantity;
+            document.getElementsByName("price")[0].value = price;
+            document.getElementsByName("proid")[0].value = prodid;
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
 
     <footer id='footer'>
         <p>&copy; TheBookStore</p>
