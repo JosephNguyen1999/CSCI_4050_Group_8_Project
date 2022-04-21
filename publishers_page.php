@@ -228,9 +228,8 @@ $conn->close();
             <label for="image">Cover image:</label>
             <input type="file" name="fileToUpload" id="fileToUpload"><hr>
             <input type="hidden" name="userID" id="userID" value="<?php echo $_SESSION['userID'];?>">
-            <div class="plus radius" style="--l:35px;--t:3px;--c2:green">
-                <button><input type="submit" name="submit"></button>
-            </div>
+            <input class="plus radius" style="--l:35px;--t:3px;--c2:green;font-size:0;" type="submit" name="submit">
+            
         </form>
         
     </div>
@@ -349,7 +348,6 @@ $conn->close();
             }
         }
     </script>
-
     <footer id='footer'>
         <p>&copy; TheBookStore</p>
     </footer>
