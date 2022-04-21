@@ -168,6 +168,15 @@ if ($conn->connect_error) {
 				<h2 id="newAccountHeader">Create a new account today!</h2>
 			</div>
 			<div>
+            <label for="type">Type of Account: </label>
+            <select class="category" name="category">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+				<option value="publisher">Publisher</option>
+				<option value="business">Business</option>
+            </select><br>
+        </div>
+			<div>
 				<label for="firstname">First name: </label><input class="registration" type="text" name="firstname" id="firstname" required><br>
 				<label for="lasttname">Last name: </label><input class="registration" type="text" name="lastname" id="lastname" required><br>
 			</div>

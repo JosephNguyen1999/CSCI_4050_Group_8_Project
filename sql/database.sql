@@ -95,7 +95,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`, `userID`) VALUES
+INSERT INTO `products` (`prodID`, `name`, `author`, `ISBN`, `description`, `price`, `genre`, `category`, `quantity`, `image`, `publisher`) VALUES
 (1, 'Object-Oriented Software Engineering Using UML, Patterns, and Java, 3rd Edition', 'Bernd Bruegge, Allen H. Dutoit', 9780136061250, 'Computer Science', 116.25, 'Education', 'Book', 10, 'images/0136061257.jpg', 3),
 (2, 'Warriors #1: Into the Wild', 'Erin Hunter', 9780062366962, 'Warrior #1', 7.99, 'Fiction', 'Book', 7, 'images/warrior1.jpg', 3),
 (3, 'Warriors #2: Fire and Ice', 'Erin Hunter', 9780060000035, 'Warrior #2', 6.99, 'Fiction', 'Book', 8, 'images/warrior2.jpg', 3),

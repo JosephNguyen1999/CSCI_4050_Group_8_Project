@@ -22,7 +22,7 @@
 
 	
 	if (isset($_POST["createAccount"])) {
-        $userType = $_POST["userType"] ?? '';
+        $userType = $_POST["category"] ?? '';
 		$user = $_POST["username"] ?? '';
 		$pass = $_POST["password"] ?? '';
 		$phone = $_POST["phone"] ?? '';
@@ -47,7 +47,7 @@
 	if(!empty($_POST["username"]) or !empty($_POST["password"]))
 	{
 		$sql = "INSERT INTO users (userType, firstName, lastName, username, password, email, phoneNumber, verificationCode, verificationStatus, subscribeStatus) 
-        VALUES ('user', '$first', '$last', '$user', '$pass', '$email', '$phone', '$storeCode', 'true', 0)";
+        VALUES ('$userType', '$first', '$last', '$user', '$pass', '$email', '$phone', '$storeCode', 'false', 0)";
 		
 		if(mysqli_query($conn, $sql)){
 			echo "Account Successfully Created!";
