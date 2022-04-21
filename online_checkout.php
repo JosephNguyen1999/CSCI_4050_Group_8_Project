@@ -23,6 +23,7 @@ if (isset($_POST["submit"])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $email = $_POST['email'];
+    $confirmationCode = $_POST['storeCode'];
 
     $address = $_POST['address'];
     $city = $_POST['city'];
@@ -36,7 +37,7 @@ if (isset($_POST["submit"])) {
     $date = date('m/d/Y');
 
 
-    $stmt = "INSERT INTO orders (paymentStatus, grandTotal, userID, name, address, orderType, orderDate) VALUES ('true', '$orderTotal', '$userID', '$full_name', '$full_addr', 'onlineCard', '$date');";
+    $stmt = "INSERT INTO orders (paymentStatus, grandTotal, userID, name, address, orderType, orderDate, confirmationCode) VALUES ('true', '$orderTotal', '$userID', '$full_name', '$full_addr', 'onlineCard', '$date', '$confirmationCode');";
     mysqli_query($conn, $stmt);
 
     $latest = "SELECT orderID FROM orders GROUP BY orderID DESC LIMIT 1";

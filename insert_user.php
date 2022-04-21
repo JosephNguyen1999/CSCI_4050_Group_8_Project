@@ -31,7 +31,16 @@
 		$email = $_POST["email"] ?? '';
         $phone = $_POST["phone"] ?? '';
 		$storeCode = $_POST['storeCode'] ?? '';
+		$bDate =  $_POST['date'] ?? '';
+		$newDate = date("m/d/Y", strtotime($bDate));
         
+		$address = $_POST['address'];
+		$city = $_POST['city'];
+		$state = $_POST['state'];
+		$zipcode = $_POST['zipcode'];
+		$full_addr = "$address" . ", " . "$city" . ", " . "$state" . " " . "$zipcode";
+
+
 	} else {
 		include('registration_page.php');
 	}
@@ -46,10 +55,11 @@
 	
 	if(!empty($_POST["username"]) or !empty($_POST["password"]))
 	{
-		$sql = "INSERT INTO users (userType, firstName, lastName, username, password, email, phoneNumber, verificationCode, verificationStatus, subscribeStatus) 
-        VALUES ('$userType', '$first', '$last', '$user', '$pass', '$email', '$phone', '$storeCode', 'false', 0)";
+		$sql = "INSERT INTO users (userType, firstName, lastName, username, password, email, phoneNumber, verificationCode, verificationStatus, subscribeStatus, birthDate, address) 
+        VALUES ('$userType', '$first', '$last', '$user', '$pass', '$email', '$phone', '$storeCode', 'false', 0, '$newDate', '$full_addr')";
 		
 		if(mysqli_query($conn, $sql)){
+
 			echo "Account Successfully Created!";
 			include('registration_page.php');
 			}
@@ -66,4 +76,3 @@
 	}
 
 	$conn->close();
-?>

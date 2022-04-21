@@ -1,5 +1,5 @@
-<?php 
-include_once('session_header.php'); 
+<?php
+include_once('session_header.php');
 
 $servername = "localhost";
 $username = "root";
@@ -10,8 +10,11 @@ $dbname = "booksDatabase";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+	die("Connection failed: " . $conn->connect_error);
 }
+
+$length = 6;    
+$storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$length);
 
 ?>
 
@@ -52,36 +55,34 @@ if ($conn->connect_error) {
 	</style>
 
 	<script src=
-    	"https://smtpjs.com/v3/smtp.js">
-  	</script>
-  
-  	<script type="text/javascript">
-    	function sendEmail() {
-      		//need to generate code
-			//put the code in the database
+		"https://smtpjs.com/v3/smtp.js">
+	</script>
+
+	<script type="text/javascript">
+		function sendEmail() {
+			// need to generate code
+			// put the code in the database
 			var val = document.getElementById("email").value;
-			var code = (Math.random() + 1).toString(36).substring(7);
-			document.cookie="code=" + code;
-			<?php 
-			$storeCode = $_COOKIE['code'];
-			?>
-			var test = "<html><h2>Well that was easy!!</h2><p>" + code + "</p><h2><a href='http://localhost/CSCI_4050_Group_8_Project/verification_page.php'>Visit W3Schools.com!</a></h2></html>";
+			// var code = (Math.random() + 1).toString(36).substring(7);
+			// document.cookie = "code=" + code;
+			var code = document.getElementById("storeCode").value;
+			var test = "<html><h2>Well that was easy!! LATEST EMAIL!!</h2><p>" + code + "</p><h2><a href='http://localhost/CSCI_4050_Group_8_Project/verification_page.php'>Visit W3Schools.com!</a></h2></html>";
 			Email.send({
-        	Host: "smtp.gmail.com",
-        	Username: "thebookstore99@gmail.com",
-        	Password: "thebookstore99",
-        	To: val,
-			// To: "josephnguyen902@gmail.com",
-        	From: "thebookstore99@gmail.com",
-        	Subject: "Sending Email using javascript",
-        	Body: test,
-			
-      	})
-        .then(function (message) {
-          alert("mail sent successfully")
-        });
-    }
-  	</script>
+					Host: "smtp.gmail.com",
+					Username: "TheBookStore99@gmail.com",
+					Password: "thebookstore99",
+					To: val,
+					// To: "TheBookStore99@gmail.com",
+					From: "TheBookStore99@gmail.com",
+					Subject: "Final Test Sending Email using javascript",
+					Body: test,
+
+				})
+				.then(function(message) {
+					alert("mail sent successfully")
+				});
+		}
+	</script>
 
 </head>
 
@@ -113,7 +114,7 @@ if ($conn->connect_error) {
 			<li><a href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -125,7 +126,7 @@ if ($conn->connect_error) {
 			<li><a href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -138,7 +139,7 @@ if ($conn->connect_error) {
 			<li><a href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -151,7 +152,7 @@ if ($conn->connect_error) {
 			<li><a href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -161,21 +162,21 @@ if ($conn->connect_error) {
 
 
 
-
-		<form action="insert_user.php" method="post">
+	<!-- action="insert_user.php"  -->
+		<form onsubmit="return sendEmail();" action="insert_user.php" method="post">
 
 			<div>
 				<h2 id="newAccountHeader">Create a new account today!</h2>
 			</div>
 			<div>
-            <label for="type">Type of Account: </label>
-            <select class="category" name="category">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-				<option value="publisher">Publisher</option>
-				<option value="business">Business</option>
-            </select><br>
-        </div>
+				<label for="type">Type of Account: </label>
+				<select class="category" name="category">
+					<option value="admin">Admin</option>
+					<option value="user">User</option>
+					<option value="publisher">Publisher</option>
+					<option value="business">Business</option>
+				</select><br>
+			</div>
 			<div>
 				<label for="firstname">First name: </label><input class="registration" type="text" name="firstname" id="firstname" required><br>
 				<label for="lasttname">Last name: </label><input class="registration" type="text" name="lastname" id="lastname" required><br>
@@ -202,7 +203,7 @@ if ($conn->connect_error) {
 				</select><br>
 			</div>
 			<div>
-				<label for="zipcode">Zipcode: </label><input class="registration" type="number" name="zipcode" id="zipcode"><br>
+				<label for="zipcode">Zipcode: </label><input class="registration" type="number" name="zipcode" id="zipcode" required><br>
 			</div>
 			<div>
 				<label for="city">City: </label><input class="registration" type="text" name="city" id="city" required><br>
@@ -219,8 +220,8 @@ if ($conn->connect_error) {
 			</div>
 
 			<div>
-				<input type="hidden" name="storeCode" value="<?php echo $storeCode; ?>" />
-				<input class="registrationSubmit" type="submit" name="createAccount" id="createAccount" value="Create Account" onclick="sendEmail()">
+				<input type="hidden" id="storeCode" name="storeCode" value="<?php echo $storeCode; ?>" />
+				<input class="registrationSubmit" type="submit" name="createAccount" id="createAccount" value="Create Account">
 			</div>
 
 

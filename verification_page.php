@@ -111,11 +111,13 @@ include_once('session_header.php');
     <div id="menu_div">
         <h2>Enter Your Verification Code From Email Below!</h2>
     </div>
-    <form action="home_page.html" method="post">
+    <form action="verification_action.php" method="post">
         <div>
-            <label for="email">Verification Code: </label>
+            <label for="username">Username: </label>
+            <input class="verify" type="text" name="username" required><br><br>
+            <label for="vcode">Verification Code: </label>
             <input class="verify" type="text" name="code" required><br><br>
-            <button type="submit" class='menu_items_button' name="verifySubmit">Submit</button>
+            <button type="submit" class='menu_items_button' name="submit">Submit</button>
         </div>
     </form>
 

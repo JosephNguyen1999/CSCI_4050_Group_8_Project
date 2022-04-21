@@ -19,6 +19,24 @@ if ($conn->connect_error) {
 $query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID";
 $items = $conn->query($query);
 
+$length = 12;
+$storeCode = substr(str_shuffle('0123456789012345678901234567890123456789'), 1, $length);
+
+$grandTotal = $_SESSION['grandTotal'];
+date_default_timezone_set("America/New_York");
+$date = date('m/d/Y');
+
+$latest = "SELECT orderID FROM orders GROUP BY orderID DESC LIMIT 1";
+$latestOrders = mysqli_query($conn, $latest);
+$row_count = mysqli_num_rows($latestOrders);
+if ($row_count > 0) {
+    foreach ($latestOrders as $latestOrder) {
+        $latestOrderID = $latestOrder['orderID'];
+    }
+    $stmt2 = "SELECT orderID FROM orders WHERE orderID = $latestOrderID";
+    $cartInformations = mysqli_query($conn, $stmt2);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -149,6 +167,48 @@ $items = $conn->query($query);
             }
         }
     </style>
+
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+    <script type="text/javascript">
+        function sendEmail() {
+            // need to generate code
+            // put the code in the database
+            var val = document.getElementById("email").value;
+            var code = document.getElementById("storeCode").value;
+            var first = document.getElementById("fname").value;
+            var last = document.getElementById("lname").value;
+            var orderID = document.getElementById("orderID").value;
+            var orderDate = document.getElementById("date").value;
+            var PickupAddress = "111 UGA Way, Athens, GA 30605";
+            var orderedItems = document.getElementById("item").value;
+            var grandtotal = document.getElementById("grandTotal").value;
+            var test = "<html><h2>Thank you for ordering with TheBookStore</h2>" + "<p>Name: " + first + " " + last +
+                "</p><p>Confirmation Number: " + code +
+                "</p><p>Order ID: " + orderID +
+                "</p><p>Order Date: " + orderDate +
+                "</p><p>Pickup Address: " + PickupAddress +
+                "</p><p>Items Ordered: </p>" +
+                "<table><thead><tr><th>Name</th></tr></thead><?php foreach ($items as $item) { ?><tbody><tr><td><?php echo $item['name'] ?></a></td></tr></tbody><?php } ?></table>" + 
+                "<p>Grand Total: $" + grandtotal+ 
+                "</p></html>";
+            Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "TheBookStore99@gmail.com",
+                    Password: "thebookstore99",
+                    To: val,
+                    // To: "TheBookStore99@gmail.com",
+                    From: "TheBookStore99@gmail.com",
+                    Subject: "Final Test Sending Email using javascript",
+                    Body: test,
+
+                })
+                .then(function(message) {
+                    alert("mail sent successfully")
+                });
+        }
+    </script>
 </head>
 
 <body>
@@ -219,7 +279,7 @@ $items = $conn->query($query);
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="reservation_cash.php" method="post">
+                <form onsubmit="return sendEmail();" action="reservation_cash.php" method="post">
 
                     <div class="row">
                         <div class="col-50">
@@ -249,6 +309,23 @@ $items = $conn->query($query);
                         </div>
 
                     </div>
+                    <?php foreach ($items as $item) { ?>
+                        <input type="hidden" id="item" name="item" value="<?php echo $item['name']; ?>" />
+                    <?php } ?>
+                    <?php
+                    if ($row_count <= 0) {
+                    ?>
+
+                        <input type="hidden" id="orderID" name="orderID" value="1" />
+                        <?php } else {
+                        foreach ($cartInformations as $cartInformation) {
+                        ?>
+                            <input type="hidden" id="orderID" name="orderID" value="<?php echo $cartInformation['orderID'] + 1; ?>" />
+                    <?php }
+                    } ?>
+                    <input type="hidden" id="date" name="date" value="<?php echo $date; ?>" />
+                    <input type="hidden" id="grandTotal" name="grandTotal" value="<?php echo $grandTotal; ?>" />
+                    <input type="hidden" id="storeCode" name="storeCode" value="<?php echo $storeCode; ?>" />
                     <input type="submit" name="submit" value="Reserve In Store/Cash" class="btn">
                 </form>
             </div>
@@ -265,7 +342,6 @@ $items = $conn->query($query);
                     <p><a href="#"><?php echo $item['name'] ?></a> <span class="price">$<?php echo $item['total'] ?></span></p>
                     <hr>
                 <?php }
-                $grandTotal = $_SESSION['grandTotal'];
                 ?>
                 <p>Total <span class="price" style="color:black"><b>$<?php echo $grandTotal; ?></b></span></p>
             </div>
