@@ -24,11 +24,11 @@ $query = "INSERT INTO `products`
         (`name`, `author`,
         `ISBN`, `description`, `price`,
         `genre`, `category`, `quantity`,
-        `image`, `userID`) 
+        `image`, `publisher`) 
     VALUES ('$titl','$auth',
         $isbn,'$desc',$pric,
         '$genr','Book',$quant,
-        'images/missing.png',$usid)";
+        'images/headpug.jpg',$usid)";
 
 
 echo $titl . " " . $auth . " " . $isbn . " " . $desc . " " . $genr . " " . $quant . " " . $pric . " " . $usid . " " . $img; //debug
