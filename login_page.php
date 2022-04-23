@@ -34,6 +34,29 @@
 		input {
 			display: table-cell;
 		}
+		.form-box {
+            margin: auto;
+            display:block;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 40%;
+            left:30%;
+        }
+		input[type=text], input[type=number]{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px, 0;
+            float:inline-end;
+        }
+        input[type=submit] {
+            float:right;
+            margin-left: 8px;
+        }
+        input[type=checkbox] {
+            margin-top: 16px;
+            margin-right: 8px;
+        }
 	</style>
 
 </head>
@@ -105,7 +128,8 @@
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
 	<?php }; ?>
-	<div id="loginPage">
+	<br>
+	<div id="loginPage" class="form-box">
 
 		<form action="validate_login.php" method="post">
 

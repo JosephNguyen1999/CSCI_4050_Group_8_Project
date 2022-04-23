@@ -52,6 +52,29 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 		input {
 			display: table-cell;
 		}
+		.form-box {
+            margin: auto;
+            display:block;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 40%;
+            left:30%;
+        }
+		input[type=text], input[type=number], input[type=email], input[type=password]{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px, 0;
+            float:inline-end;
+        }
+        input[type=submit] {
+            float:right;
+            margin-left: 8px;
+        }
+        input[type=checkbox] {
+            margin-top: 16px;
+            margin-right: 8px;
+        }
 	</style>
 
 	<script src=
@@ -157,8 +180,8 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
 	<?php }; ?>
-
-	<div id="registrationPage">
+	<br>
+	<div id="registrationPage"class="form-box">
 
 
 
