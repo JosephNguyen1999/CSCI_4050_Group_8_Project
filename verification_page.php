@@ -11,7 +11,7 @@ include_once('session_header.php');
 <html>
 
 <head>
-    <title>Home Page</title>
+    <title>Verification Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">

@@ -17,7 +17,11 @@ if ($conn->connect_error) {
 }
 
 $subquery = "";
-if($_SESSION['userType'] == 'publisher') $subquery = " WHERE userID=$_SESSION[userID]";
+$userID = $_SESSION['userID'];
+$userType = $_SESSION['userType'];
+if($userType == 'publisher') {
+    $subquery = " WHERE publisher='$userID'";
+}
 
 $query = "SELECT * FROM `products`" . $subquery;
 
@@ -29,7 +33,7 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <title>Catalog Page</title>
+    <title>Publishers Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
@@ -111,6 +115,7 @@ $conn->close();
             background-color: #f2f2f2;
             padding: 20px;
             left:25%;
+            margin-bottom: 200px;
         }
         input[type=text], input[type=number]{
             width: 100%;

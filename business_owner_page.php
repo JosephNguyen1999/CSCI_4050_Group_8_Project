@@ -25,7 +25,7 @@ $orders = $conn->query($query2);
 <html lang="en">
 
 <head>
-    <title>Order History</title>
+    <title>Business Owner Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">

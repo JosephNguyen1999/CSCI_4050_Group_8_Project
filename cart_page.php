@@ -39,7 +39,7 @@ $items = $conn->query($query);
 <html lang="en">
 
 <head>
-    <title>Checkout</title>
+    <title>Cart Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
@@ -53,6 +53,7 @@ $items = $conn->query($query);
             display: table;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: auto;
         }
 
         form.p {

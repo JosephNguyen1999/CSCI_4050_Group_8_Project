@@ -93,7 +93,7 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'admin') {
             <button type="submit" class='menu_items_button' name="books">Manage Members</button><br><br>
         </form>
         <form action="manage_orders.php" method="post">
-            <button type="submit" class='menu_items_button' name="books">Manage Orders</button>
+            <button type="submit" class='menu_items_button' name="books">Manage Orders</button><br><br>
         </form>
         <form action="publishers_page.php" method="post">
             <button type="submit" class='menu_items_button' name="books">Manage Books</button>

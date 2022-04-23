@@ -74,3 +74,6 @@ include('home_page.php');
 //header("location: home_page.html");
 
 $conn->close();
+
+
+?>

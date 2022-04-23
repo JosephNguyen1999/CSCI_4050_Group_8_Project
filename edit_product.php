@@ -9,7 +9,7 @@ if ($_SESSION['loginst'] == 0 && $_SESSION['userType'] != 'publisher') {
 <html lang="en">
 
 <head>
-    <title>Book Detail</title>
+    <title>Edit Product Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">

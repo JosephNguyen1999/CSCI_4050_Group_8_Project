@@ -47,3 +47,5 @@
     // $stmt->close();
 
     $conn->close();
+
+    ?>

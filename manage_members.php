@@ -26,7 +26,7 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <title>Catalog Page</title>
+    <title>Manage Members Page</title>
 
     <!--Bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
@@ -69,6 +69,10 @@ $conn->close();
             bottom: 0;
             display: none;
             background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body{
+            margin-bottom: 200px;
         }
     </style>
 
