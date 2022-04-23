@@ -41,7 +41,7 @@ if (isset($_POST["submit"])) {
         $latestOrderID = $latestOrder['orderID'];
     }
 
-    $stmt2 = "SELECT orderID, uniqueID, cartQuantity, orderDate, total FROM orders JOIN cart ON cart.userID = orders.userID WHERE orderDate = '$date' AND orderID = $latestOrderID";
+    $stmt2 = "SELECT orderID, uniqueID, cartQuantity, orderDate, total FROM orders JOIN cart ON cart.userID = orders.userID AND cart.userID = '$userID' WHERE orderDate = '$date' AND orderID = $latestOrderID";
     $cartInformations = mysqli_query($conn, $stmt2);
     // $stmt3 = "DELETE FROM cartHistory WHERE orderDate = $date";
     // mysqli_query($conn, $stmt3);
@@ -58,7 +58,7 @@ if (isset($_POST["submit"])) {
 }
 
 
-$deleteAfter = "DELETE FROM cart";
+$deleteAfter = "DELETE FROM cart WHERE cart.userID = '$userID'";
 mysqli_query($conn, $deleteAfter);
 //   echo $userID;
 echo 'Reservation/Cash Success!';

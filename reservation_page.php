@@ -16,7 +16,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID";
+$userID = $_SESSION['userID'];
+
+$query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID AND cart.userID = '$userID'";
 $items = $conn->query($query);
 
 $length = 12;
@@ -116,7 +118,7 @@ if ($row_count > 0) {
             border-radius: 3px;
         }
 
-        input[type=text] {
+        input[type=text], input[type=email] {
             width: 100%;
             margin-bottom: 20px;
             padding: 12px;
@@ -200,7 +202,7 @@ if ($row_count > 0) {
                     To: val,
                     // To: "TheBookStore99@gmail.com",
                     From: "TheBookStore99@gmail.com",
-                    Subject: "Final Test Sending Email using javascript",
+                    Subject: "TheBookStore Order Reservation Confirmation!",
                     Body: test,
 
                 })
@@ -295,7 +297,7 @@ if ($row_count > 0) {
                                 </div>
                             </div>
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
 
                         </div>
 

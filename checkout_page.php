@@ -16,7 +16,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID";
+$userID = $_SESSION['userID'];
+
+$query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID AND cart.userID = '$userID'";
 $items = $conn->query($query);
 
 $length = 12;
@@ -117,7 +119,7 @@ if ($row_count > 0) {
             border-radius: 3px;
         }
 
-        input[type=text] {
+        input[type=text], input[type=email] {
             width: 100%;
             margin-bottom: 20px;
             padding: 12px;
@@ -189,7 +191,7 @@ if ($row_count > 0) {
                 "</p><p>Confirmation Number: " + code +
                 "</p><p>Order ID: " + orderID +
                 "</p><p>Order Date: " + orderDate +
-                "</p><p>Pickup Address: " + ShippingAddress +
+                "</p><p>Shipping Address: " + ShippingAddress +
                 "</p><p>Items Ordered: </p>" +
                 "<table><thead><tr><th>Name</th></tr></thead><?php foreach ($items as $item) { ?><tbody><tr><td><?php echo $item['name'] ?></a></td></tr></tbody><?php } ?></table>" +
                 "<p>Grand Total: $" + grandtotal +
@@ -201,7 +203,7 @@ if ($row_count > 0) {
                     To: val,
                     // To: "TheBookStore99@gmail.com",
                     From: "TheBookStore99@gmail.com",
-                    Subject: "Final Test Sending Email using javascript",
+                    Subject: "TheBookStore Online Order Confirmation!",
                     Body: test,
 
                 })
@@ -296,7 +298,7 @@ if ($row_count > 0) {
                                 </div>
                             </div>
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
                             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
                             <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
                             <label for="city"><i class="fa fa-institution"></i> City</label>
@@ -309,7 +311,7 @@ if ($row_count > 0) {
                                 </div>
                                 <div class="col-50">
                                     <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001" required>
+                                    <input type="text" pattern="(?=.*\d).{5}" id="zip" name="zip" placeholder="10001" title="Please enter a valid zip code." required>
                                 </div>
                             </div>
                         </div>
@@ -319,18 +321,18 @@ if ($row_count > 0) {
                             <label for="cname">Name on Card</label>
                             <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
                             <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required>
+                            <input type="text" pattern="(?=.*\d).{15,16}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" title="Please enter a valid card number." required>
                             <label for="expmonth">Exp Month</label>
                             <input type="text" id="expmonth" name="expmonth" placeholder="September" required>
 
                             <div class="row">
                                 <div class="col-50">
                                     <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018" required>
+                                    <input type="text" pattern="(?=.*\d).{4}" id="expyear" name="expyear" placeholder="2018" title="Please enter a valid year." required>
                                 </div>
                                 <div class="col-50">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352" required>
+                                    <input type="text" pattern="(?=.*\d).{3,4}" id="cvv" name="cvv" placeholder="352" title="CVV should be either 3 digits or 4 digits." required>
                                 </div>
                             </div>
                         </div>

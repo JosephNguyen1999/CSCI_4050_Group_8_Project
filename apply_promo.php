@@ -16,6 +16,8 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $userID = $_SESSION['userID'];
+
     if (isset($_POST["submit"])) {
         $userPromo = $_POST["promoCode"];
 
@@ -27,7 +29,7 @@
                 $promoNumber = $promoInformation['promoNumber'];
                 $promoDiscount = 1 - $promoNumber;
                 if ($promoNumber < 1) {
-                    $updateCart = "UPDATE cart SET total = total * '$promoDiscount';";
+                    $updateCart = "UPDATE cart SET total = total * '$promoDiscount' WHERE cart.userID = '$userID';";
                     mysqli_query($conn, $updateCart);
                     $getTotal = "SELECT uniqueID, total FROM cart;";
                     $totals = mysqli_query($conn, $getTotal);
@@ -35,7 +37,7 @@
                         $roundTotal = $total['total'];
                         $roundTotal = round($roundTotal, 2);
                         $uniqueID = $total['uniqueID'];
-                        $updatedCart = "UPDATE cart SET total = '$roundTotal' WHERE uniqueID = $uniqueID;";
+                        $updatedCart = "UPDATE cart SET total = '$roundTotal' WHERE uniqueID = $uniqueID AND cart.userID = '$userID';";
                         mysqli_query($conn, $updatedCart);
                     }
                 }

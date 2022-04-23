@@ -66,7 +66,7 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 			// var code = (Math.random() + 1).toString(36).substring(7);
 			// document.cookie = "code=" + code;
 			var code = document.getElementById("storeCode").value;
-			var test = "<html><h2>Well that was easy!! LATEST EMAIL!!</h2><p>" + code + "</p><h2><a href='http://localhost/CSCI_4050_Group_8_Project/verification_page.php'>Visit W3Schools.com!</a></h2></html>";
+			var test = "<html><h2>Registration Verification Code Below!</h2><p>" + code + "</p><h2><a href='http://localhost/CSCI_4050_Group_8_Project/verification_page.php'>Please input your username and code here to verify your account!</a></h2></html>";
 			Email.send({
 					Host: "smtp.gmail.com",
 					Username: "TheBookStore99@gmail.com",
@@ -74,7 +74,7 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 					To: val,
 					// To: "TheBookStore99@gmail.com",
 					From: "TheBookStore99@gmail.com",
-					Subject: "Final Test Sending Email using javascript",
+					Subject: "Registration Confirmation and Verification!",
 					Body: test,
 
 				})
@@ -192,8 +192,10 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 				<label for="username">Username: </label><input class="registration" type="text" name="username" id="username" required><br>
 			</div>
 			<div>
-				<label for="password">Password: </label><input class="registration" type="password" name="password" id="password" required><br>
-				<label for="password2">Confirm Password: </label><input class="registration" type="password" name="password2" id="password2" required><br>
+				<label for="password">Password: </label><input class="registration" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" type="password" name="password" id="password" title="Password must include the following:
+				minimum of 5 characters, at least one uppercase letter, at least one lowercase letter, at least one number" required><br>
+				<label for="password2">Confirm Password: </label><input class="registration" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" type="password" name="password2" id="password2" title="Password must include the following:
+				minimum of 5 characters, at least one uppercase letter, at least one lowercase letter, at least one number" required><br>
 			</div>
 			<div>
 				<label for="country">Country: </label><select class="registration" name="country" id="country">
@@ -203,7 +205,7 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 				</select><br>
 			</div>
 			<div>
-				<label for="zipcode">Zipcode: </label><input class="registration" type="number" name="zipcode" id="zipcode" required><br>
+				<label for="zipcode">Zipcode: </label><input class="registration" pattern="(?=.*\d).{5}" type="text" name="zipcode" id="zipcode" title="Enter a valid zip code" required><br>
 			</div>
 			<div>
 				<label for="city">City: </label><input class="registration" type="text" name="city" id="city" required><br>
@@ -211,12 +213,12 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 			</div>
 
 			<div>
-				<label for="address">Address: </label><input class="registration" type="text" name="address" id="address" required><br>
+				<label for="address">Address: </label><input class="registration" type="text" name="address" id="address" title="Enter a valid phone number" required><br>
 			</div>
 
 
 			<div>
-				<label for="phone">Phone Number: </label><input class="registration" type="number" name="phone"><br><br>
+				<label for="phone">Phone Number: </label><input class="registration" pattern="(?=.*\d).{10}" type="number" name="phone"><br><br>
 			</div>
 
 			<div>

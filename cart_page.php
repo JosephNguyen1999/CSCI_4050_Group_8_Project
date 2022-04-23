@@ -17,9 +17,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID";
-$items = $conn->query($query);
+$userID = $_SESSION['userID'];
 
+$query = "SELECT * FROM cart JOIN products ON cart.uniqueID = products.prodID AND cart.userID = '$userID'";
+$items = $conn->query($query);
 // if (isset($_SESSION['userID'])) {
 //     $userID = 1;
 
@@ -74,7 +75,8 @@ $items = $conn->query($query);
             text-align: center;
         }
 
-        h2, h4{
+        h2,
+        h4 {
             text-align: center;
         }
 
@@ -108,7 +110,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -120,7 +122,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -133,7 +135,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -146,7 +148,7 @@ $items = $conn->query($query);
             <li><a href="about_page.php">About</a></li>
             <li><a href="contact_page.php">Contact Us</a></li>
             <li><a class="active" href="cart_page.php">Cart</a></li>
-            
+
             <li><a href="order_history_page.php">Order History</a></li>
             <li><a href="logout_page.php">Logout</a></li>
         </ul>
@@ -168,35 +170,39 @@ $items = $conn->query($query);
                 <th>Delete From Cart</th>
             </tr>
         </thead>
-        <?php foreach ($items as $item) { ?>
-            <tbody>
-                <tr>
-                    <td><img src="<?php echo $item['image'] ?>" height="150px" /></td>
-                    <td><a href="book_detail_page.php"><?php echo $item['name'] ?></a></td>
-                    <td><?php echo $item['author'] ?></td>
-                    <td>
-                        <p>$<?php echo $item['price'] ?></p>
-                    </td>
-                    <td><?php echo $item['cartQuantity'] ?></td>
-                    <td><?php echo round($item['total'], 2) ?></td>
-                    <form action="deleteFromCart.php" method="post">
+        <?php foreach ($items as $item) {
+            if ($userID == $item['userID']) { ?>
+                <tbody>
+                    <tr>
+                        <td><img src="<?php echo $item['image'] ?>" height="150px" /></td>
+                        <td><a href="book_detail_page.php"><?php echo $item['name'] ?></a></td>
+                        <td><?php echo $item['author'] ?></td>
                         <td>
-                            <input type="hidden" name="product_id" value="<?php echo $item['prodID']; ?>" />
-                            <input type="submit" name="submit" value="Delete" />
+                            <p>$<?php echo $item['price'] ?></p>
                         </td>
-                    </form>
-                </tr>
-            </tbody>
-        <?php } ?>
+                        <td><?php echo $item['cartQuantity'] ?></td>
+                        <td><?php echo round($item['total'], 2) ?></td>
+                        <form action="deleteFromCart.php" method="post">
+                            <td>
+                                <input type="hidden" name="product_id" value="<?php echo $item['prodID']; ?>" />
+                                <input type="submit" name="submit" value="Delete" />
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+        <?php }
+        } ?>
     </table>
 
     <?php
     $grandTotal = 0;
     $roundedGrand = 0;
     foreach ($items as $item) {
-        $total = $item['total'];
-        $grandTotal = $grandTotal + $total;
-        $roundedGrand = round($grandTotal, 2);
+        if ($userID == $item['userID']) {
+            $total = $item['total'];
+            $grandTotal = $grandTotal + $total;
+            $roundedGrand = round($grandTotal, 2);
+        }
     }
     ?>
 

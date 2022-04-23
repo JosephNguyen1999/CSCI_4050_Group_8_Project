@@ -130,10 +130,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `userType`, `firstName`, `lastName`, `username`, `password`, `email`, `phoneNumber`, `verificationCode`, `verificationStatus`, `subscribeStatus`, `birthDate`, `address`) VALUES
-(1, 'admin', 'joseph', 'nguyen', 'hello', 'bye', 'admin@uga.edu', '1112223333', 1, 'true', 0, '07/31/1999', '111 Hello Way'),
-(2, 'user', 'Bob', 'Jones', 'bobjones123', '123', 'user@uga.edu', '1112223333', 2, 'true', 0, '07/31/1999', '111 Hello Way'),
-(3, 'publisher', 'Lily', 'Tea', 'tea111', '111', 'publisher@uga.edu', '1112223333', 3, 'true', 0, '07/31/1999', '111 Hello Way'),
-(4, 'business', 'Lily', 'Tea', 'tea123', '123', 'business@uga.edu', '1112223333', 4, 'true', 0, '07/31/1999', '111 Hello Way');
+(1, 'admin', 'joseph', 'nguyen', 'admin', 'admin', 'admin@uga.edu', '1112223333', 1, 'true', 0, '07/31/1999', '111 Hello Way'),
+(2, 'user', 'Bob', 'Jones', 'user', 'user', 'user@uga.edu', '1112223333', 2, 'true', 0, '07/31/1999', '111 Hello Way'),
+(3, 'publisher', 'Lily', 'Tea', 'publisher', 'publisher', 'publisher@uga.edu', '1112223333', 3, 'true', 0, '07/31/1999', '111 Hello Way'),
+(4, 'business', 'Lily', 'Tea', 'business', 'business', 'business@uga.edu', '1112223333', 4, 'true', 0, '07/31/1999', '111 Hello Way');
 
 
 -- --------------------------------------------------------

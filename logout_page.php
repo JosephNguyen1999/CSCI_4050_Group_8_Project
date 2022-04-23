@@ -105,10 +105,10 @@ if ($conn->connect_error) {
 	<?php }; ?>
 	</div>
 	<?php
-	$updateAllQuery = "UPDATE products p JOIN cart c ON c.uniqueID = p.prodID SET p.quantity = p.quantity + c.cartQuantity";
-	mysqli_query($conn, $updateAllQuery);
-	$deleteAllQuery = "DELETE FROM cart";
-	mysqli_query($conn, $deleteAllQuery);
+	// $updateAllQuery = "UPDATE products p JOIN cart c ON c.uniqueID = p.prodID SET p.quantity = p.quantity + c.cartQuantity";
+	// mysqli_query($conn, $updateAllQuery);
+	// $deleteAllQuery = "DELETE FROM cart";
+	// mysqli_query($conn, $deleteAllQuery);
 	session_unset();
 	session_destroy();
 	?>
