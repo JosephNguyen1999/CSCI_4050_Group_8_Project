@@ -198,11 +198,11 @@ if ($row_count > 0) {
                 "</p></html>";
             Email.send({
                     Host: "smtp.gmail.com",
-                    Username: "TheBookStore99@gmail.com",
-                    Password: "thebookstore99",
+                    Username: "TheBookStore999@gmail.com",
+                    Password: "esuzhiwrpgablkmk",
                     To: val,
                     // To: "TheBookStore99@gmail.com",
-                    From: "TheBookStore99@gmail.com",
+                    From: "TheBookStore999@gmail.com",
                     Subject: "TheBookStore Online Order Confirmation!",
                     Body: test,
 

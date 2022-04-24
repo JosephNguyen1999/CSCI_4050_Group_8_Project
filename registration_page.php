@@ -92,11 +92,11 @@ $storeCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,$lengt
 			var test = "<html><h2>Registration Verification Code Below!</h2><p>" + code + "</p><h2><a href='http://localhost/CSCI_4050_Group_8_Project/verification_page.php'>Please input your username and code here to verify your account!</a></h2></html>";
 			Email.send({
 					Host: "smtp.gmail.com",
-					Username: "TheBookStore99@gmail.com",
-					Password: "thebookstore99",
+					Username: "TheBookStore999@gmail.com",
+					Password: "esuzhiwrpgablkmk",
 					To: val,
 					// To: "TheBookStore99@gmail.com",
-					From: "TheBookStore99@gmail.com",
+					From: "TheBookStore999@gmail.com",
 					Subject: "Registration Confirmation and Verification!",
 					Body: test,
 

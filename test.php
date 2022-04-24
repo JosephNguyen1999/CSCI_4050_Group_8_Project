@@ -11,10 +11,10 @@
     function sendEmail() {
       Email.send({
         Host: "smtp.gmail.com",
-        Username: "TheBookStore99@gmail.com",
-        Password: "thebookstore99",
-        To: 'TheBookStore99@gmail.com',
-        From: "TheBookStore99@gmail.com",
+        Username: "TheBookStore999@gmail.com",
+        Password: "esuzhiwrpgablkmk",
+        To: 'TheBookStore999@gmail.com',
+        From: "TheBookStore999@gmail.com",
         Subject: "Sending Email using javascript",
         Body: "Well that was easy!!",
       })
