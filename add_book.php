@@ -20,6 +20,14 @@ $pric=$_POST["price"];
 $quant=$_POST["quantity"];
 $usid=$_POST["userID"];
 
+$msg="";
+
+$filename = $_FILES["fileToUpload"]["name"];
+
+$tempname = $_FILES["fileToUpload"]["tmp_name"];  
+
+$folder = "images/".$filename;   
+
 $query = "INSERT INTO `products`
         (`name`, `author`,
         `ISBN`, `description`, `price`,
@@ -28,7 +36,18 @@ $query = "INSERT INTO `products`
     VALUES ('$titl','$auth',
         $isbn,'$desc',$pric,
         '$genr','Book',$quant,
-        'images/headpug.jpg',$usid)";
+        '$folder',$usid)";
+
+
+if (move_uploaded_file($tempname, $folder)) {
+
+    $msg = "Image uploaded successfully";
+
+}else{
+
+    $msg = "Failed to upload image";
+
+}
 
 
 echo $titl . " " . $auth . " " . $isbn . " " . $desc . " " . $genr . " " . $quant . " " . $pric . " " . $usid . " " . $img; //debug

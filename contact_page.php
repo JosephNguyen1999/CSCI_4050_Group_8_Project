@@ -82,9 +82,9 @@
 	<?php }; ?>
 	<div id='content_div'>
 		<h2>Have a question or comment? Here’s how to reach us:</h2>
-		<p>Business Hours: 7 am to 5 pm EST</p>
-		<p>Phone: 111-222-3333</p>
-		<p>Email: bookforeveryone@email.com</p>
+		<b>Business Hours: 7 am to 5 pm EST</b><br><br>
+		<b>Phone: 111-222-3333</b><br><br>
+		<b>Email: bookforeveryone@email.com</b>
 	</div>
 	<footer id='footer'>
 		<p>&copy; TheBookStore</p>

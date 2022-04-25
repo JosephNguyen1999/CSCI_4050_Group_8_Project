@@ -37,7 +37,7 @@
 			<li><a class="active" href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -49,7 +49,7 @@
 			<li><a class="active" href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -62,7 +62,7 @@
 			<li><a class="active" href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
@@ -75,16 +75,23 @@
 			<li><a class="active" href="about_page.php">About</a></li>
 			<li><a href="contact_page.php">Contact Us</a></li>
 			<li><a href="cart_page.php">Cart</a></li>
-			
+
 			<li><a href="order_history_page.php">Order History</a></li>
 			<li><a href="logout_page.php">Logout</a></li>
 		</ul>
 	<?php }; ?>
 	<div id='content_div'>
 		<h2>About Us</h2>
-		<p>Hello! We are a TheBookStore focused on making sure that
+		<b>Hello! We are a TheBookStore focused on making sure that
 			people have access to all types of books and
-			reading material that they want!</p>
+			reading material that they want!</b><br><br>
+
+		<b>Our Mission: To help local, independent bookstores thrive in the age of ecommerce.</b><br><br>
+		<b>Our Vision: We work to connect readers with independent booksellers all over the world.<br>
+		We believe local bookstores are essential community hubs that foster culture, curiosity,<br>
+		and a love of reading, and we're committed to helping them survive and thrive. Our<br>
+		platform gives independent bookstores tools to compete online and financial support<br> 
+		to help them maintain their presence in local communities. </b>
 	</div>
 	<footer id='footer'>
 		<p>&copy; TheBookStore</p>
